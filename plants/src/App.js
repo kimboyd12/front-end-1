@@ -12,9 +12,9 @@ function App() {
         <Login />
       </Route>
       <Route path="/signup" >
-      <Register />
+        <Register />
       </Route>
-      
+
     </div>
   );
 }
