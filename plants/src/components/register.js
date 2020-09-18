@@ -131,13 +131,13 @@ class Register extends React.Component {
           <form>
             <StyledFormInput>
               <h2>Create Your Account</h2>
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="username">Username:</label>
               <input
-                id="email"
-                name="email"
-                type="email"
+                id="username"
+                name="username"
+                type="username"
                 onChange={this.handleChanges}
-                value={this.state.credentials.email}
+                value={this.state.credentials.username}
               />
 
               <label htmlFor="password">Password:</label>
