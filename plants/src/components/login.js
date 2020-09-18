@@ -108,7 +108,7 @@ const StyledFormInput = styled.div`
 const Login = (props) => {
   const dispatch = useDispatch();
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
 
@@ -142,14 +142,14 @@ const Login = (props) => {
         <form>
           <StyledFormInput>
             <h2>Log In to Your Account</h2>
-            <label htmlFor="email">Email:&nbsp;</label>
+            <label htmlFor="email">Username:&nbsp;</label>
             <input
-              id="email"
-              name="email"
-              type="email"
-              data-cy="input-email"
+              id="username"
+              name="username"
+              type="username"
+              data-cy="input-username"
               onChange={handleChange}
-              value={formValues.email}
+              value={formValues.username}
             />
 
             <label htmlFor="password">Password:&nbsp;</label>
