@@ -3,14 +3,17 @@ import * as yup from 'yup';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const Plant = () => {
+const Plants = () => {
 
-    const [PlantState, setPlantState] = useState({
+    const [plants, setPlants] = useState([{
         id: '',
         nickname: '',
         species: '',
         h2oFrequency: ''
-    });
+    }]);
+    return (Plants)
+
 }
 
-export default Plant
+
+export default Plants
