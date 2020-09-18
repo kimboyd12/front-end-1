@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <div className="ui  menu">
-        <a className="active item link">
+        <a className="item link">
           <Link className="link" to="/home">
             Home
           </Link>
