@@ -15,7 +15,7 @@ function App() {
   };
   return (
     <div className="App">
-<<<<<<< HEAD
+      
       <div className="ui  menu">
         <a className="item link">
           <Link className="link" to="/home">
@@ -62,15 +62,6 @@ function App() {
           <Login />
         </Route>
       </Switch>
-=======
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/signup" >
-        <Register />
-      </Route>
-
->>>>>>> 82364a0a38ea18a63da7748e8591a6fb50c64f10
     </div>
   );
 }

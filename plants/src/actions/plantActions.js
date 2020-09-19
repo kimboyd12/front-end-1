@@ -1,0 +1,19 @@
+import axios from "axios";
+
+export const FETCH_PLANT_START = "FETCH_PLANT_START";
+export const FETCH_PLANT_SUCCESS = "FETCH_PLANT_SUCCESS";
+export const FETCH_PLANT_FAILED = "FETCH_PLANT_FAILED";
+
+export const getPlants = () => dispatch => {
+    dispatch({ type: FETCH_PLANT_START });
+    axios
+        .get("http://localhost:3000")
+        .then(response => {
+            console.log(response.data);
+            dispatch({ type: FETCH_PLANT_SUCCESS, payload: response.data })
+        })
+        .catch(error => {
+            console.log(error);
+            dispatch({ type: FETCHIN_PLANT_FAILED });
+        });
+};
