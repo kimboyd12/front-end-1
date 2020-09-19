@@ -1,7 +1,9 @@
 import {
     FETCH_PLANT_START,
     FETCHING_PLANT_SUCCESS,
-    FETCHING_PLANT_FAILED
+    FETCHING_PLANT_FAILED,
+    ADD_PLANT_SUCCESS,
+    ADD_PLANT_FAILED
 } from "../actions/plantActions"
 
 
