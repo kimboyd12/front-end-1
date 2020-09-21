@@ -1,7 +1,7 @@
 import {
     FETCH_PLANT_START,
-    FETCHING_PLANT_SUCCESS,
-    FETCHING_PLANT_FAILED,
+    FETCH_PLANT_SUCCESS,
+    FETCH_PLANT_FAILED,
     ADD_PLANT_SUCCESS,
     ADD_PLANT_FAILED
 } from "../actions/plantActions"
@@ -20,14 +20,14 @@ export const plantReducer = (state = initialState, action) => {
         ...state,
         isFetching: true,
       };
-    case FETCHING_PLANT_SUCCESS:
+    case FETCH_PLANT_SUCCESS:
       return {
         ...state,
         isFetching: false,
         plants: action.payload,
         error: " ",
       };
-    case FETCHING_PLANT_FAILED:
+    case FETCH_PLANT_FAILED:
       return {
         ...state,
         isFetching: false,
