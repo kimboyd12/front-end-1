@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { reducer } from "./reducers";
+// import { plantReducer } from "./reducers/plantReducer"
 
 import App from "./App";
 
