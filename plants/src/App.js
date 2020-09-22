@@ -11,12 +11,11 @@ import PrivateRoute from "./utils/PrivateRoute";
 function App() {
   const { push } = useHistory();
   const handleSignOut = () => {
-    push("/");
+    push("/home");
     localStorage.removeItem("token");
   };
   return (
     <div className="App">
-      
       <div className="ui  menu">
         <a className="item link">
           <Link className="link" to="/home">
@@ -40,7 +39,7 @@ function App() {
           </div>
           <div class="item">
             <div class="ui button">
-              <Link className="link" to="/" onClick={handleSignOut}>
+              <Link className="link" to="/home" onClick={handleSignOut}>
                 Logout
               </Link>
             </div>
