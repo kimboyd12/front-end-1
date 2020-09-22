@@ -16,7 +16,7 @@ export const getPlants = () => (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      dispatch({ type: FETCHIN_PLANT_FAILED });
+      dispatch({ type: FETCH_PLANT_FAILED });
     });
 };
 
