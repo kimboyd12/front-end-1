@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
 import styled from 'styled-components';
-import Plants from './plants'
+import Plants from './plants';
 
 const FormContainer = styled.div`
   display: flex;
@@ -62,7 +62,7 @@ const StyledFormInput = styled.div`
 
   h2 {
     text-align: center;
-    font-size: rem;
+    font-size: 1.7rem;
 
     font-family: "Quicksand", sans-serif;
   }
@@ -89,7 +89,7 @@ const StyledFormInput = styled.div`
     background-color: #2b85a2;
     color: white;
 
-    margin: 2% 0% 0% 0%;
+    margin: 3.2% 0% 0% 2%;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -99,20 +99,51 @@ const StyledFormInput = styled.div`
 `;
 
 const PlantsPage = () => {
-
+    const [bDisabled, setbDisabled] = useState();
     const [p, setP] = useState();
+    const [errors, setErrors] = useState({
+        id: '',
+        nickname: '',
+        species: '',
+        h2oFrequency: ''
+    })
     const [plantState, setPlantState] = useState({
         id: '',
         nickname: '',
         species: '',
         h2oFrequency: ''
     });
-
+    const d = yup.object().shape({
+        id: yup.string().required(),
+        nickname: yup.string().required(),
+        species: yup.string().required(),
+        h2oFrequency: yup.string().required()
+    });
+    const vChange = (e) => {
+        yup.reach(d, e.target.name)
+            .validate(e.target.value)
+            .then(() => {
+                setErrors({
+                    ...errors, [e.target.name]: ""
+                })
+            })
+            .catch((err) => {
+                setErrors({
+                    ...errors, [e.target.name]: err.errors[0]
+                })
+            });
+    }
+    useEffect(() => {
+        d.isValid(plantState).then((isValid) => {
+            setbDisabled(!isValid);
+        });
+    }, [plantState]);
 
 
     const change = (e) => {
         e.persist();
         const newPlantState = { ...plantState, [e.target.name]: e.target.value }
+        vChange(e);
         setPlantState(newPlantState);
     }
     useEffect(() => {
@@ -123,9 +154,9 @@ const PlantsPage = () => {
     }, []);
     const submit = (e) => {
         e.preventDefault();
-        axios.post("https://water-my-plants-back-end1.herokuapp.com/plants/", plantState)
-            .then((res) => {
-                setP([p, res.data]);
+        axios.post("https://reqres.in/api/users", plantState)
+            .then((r) => {
+                setP([p, r.data]);
                 setPlantState({
                     id: '',
                     nickname: '',
@@ -133,8 +164,8 @@ const PlantsPage = () => {
                     h2oFrequency: ''
                 })
             })
-            .catch((err) => {
-                console.log(err.response)
+            .catch((e) => {
+                console.log(e.response)
             });
     }
     return (
@@ -145,20 +176,20 @@ const PlantsPage = () => {
                         <label htmlFor="id"><h2> ID</h2>
                             <input id="id" type="text" id="id"
                                 value={plantState.name} onChange={change} />
-                        </label>
+                            {errors.id.length > 0 ? <p>{errors.id}</p> : null}</label>
                         <label htmlFor="nickname"> <h2>Nickname</h2>
                             <input id="nickname" type="text" name="nickname"
                                 value={plantState.nickname} onChange={change} />
-                        </label>
+                            {errors.nickname.length > 0 ? <p>{errors.nickname}</p> : null}</label>
                         <label htmlFor="species"> <h2>Species</h2>
                             <input id="species" type="text" name="species"
                                 value={plantState.species} onChange={change} />
-                        </label>
+                            {errors.species.length > 0 ? <p>{errors.species}</p> : null} </label>
                         <label htmlFor="h2oFrequency"> <h2> Watering Amt</h2>
                             <input id="h2oFrequency" type="text" name="h2oFrequency"
                                 value={plantState.h2oFrequency} onChange={change} />
-                        </label>
-                        <button type="submit"><h2>Submit</h2></button>
+                            {errors.h2oFrequency.length > 0 ? <p>{errors.h2oFrequency}</p> : null}</label>
+                        <button disabled={bDisabled} type="submit"><h2>Submit</h2></button>
                         <pre>{JSON.stringify(p, null, 2)}</pre>
                     </StyledFormInput>
                 </form>
