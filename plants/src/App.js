@@ -4,7 +4,6 @@ import Login from "./components/login";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import "./App.css";
 import Register from "./components/register";
-import Plants from "./components/plantsFolder/plantsPage"
 
 import PrivateRoute from "./utils/PrivateRoute";
 
@@ -50,7 +49,6 @@ function App() {
       <Switch>
         <PrivateRoute path="/plants">
           <h1>Plants Go here</h1>
-          <Plants />
         </PrivateRoute>
         <Route path="/home">
           <h1>Insert Marketing Page Here</h1>
@@ -62,7 +60,6 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-
       </Switch>
     </div>
   );

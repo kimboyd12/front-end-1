@@ -292,7 +292,7 @@ const formSchema = yup.object().shape({
   phoneNumber: yup.string().required("Please enter your phone number"),
   password: yup
     .string()
-    .min(7, "Must have more that 7 characters")
+    .min(7, "Must have more that 6 characters")
     .required("Must enter"),
 });
 

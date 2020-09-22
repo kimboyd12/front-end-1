@@ -98,23 +98,20 @@ const StyledFormInput = styled.div`
   }
 `;
 
-const PlantsPage = () => {
+const PlantsPage = props => {
     const [bDisabled, setbDisabled] = useState();
     const [p, setP] = useState();
     const [errors, setErrors] = useState({
-        id: '',
         nickname: '',
         species: '',
         h2oFrequency: ''
     })
     const [plantState, setPlantState] = useState({
-        id: '',
-        nickname: '',
-        species: '',
-        h2oFrequency: ''
+        nickname: props.nickname,
+        species: props.species,
+        h2oFrequency: props.h2oFrequency
     });
     const d = yup.object().shape({
-        id: yup.string().required(),
         nickname: yup.string().required(),
         species: yup.string().required(),
         h2oFrequency: yup.string().required()
@@ -158,7 +155,6 @@ const PlantsPage = () => {
             .then((r) => {
                 setP([p, r.data]);
                 setPlantState({
-                    id: '',
                     nickname: '',
                     species: '',
                     h2oFrequency: ''
@@ -173,10 +169,6 @@ const PlantsPage = () => {
             <StyledForm>
                 <form onSubmit={submit}>
                     <StyledFormInput>
-                        <label htmlFor="id"><h2> ID</h2>
-                            <input id="id" type="text" id="id"
-                                value={plantState.name} onChange={change} />
-                            {errors.id.length > 0 ? <p>{errors.id}</p> : null}</label>
                         <label htmlFor="nickname"> <h2>Nickname</h2>
                             <input id="nickname" type="text" name="nickname"
                                 value={plantState.nickname} onChange={change} />
@@ -189,7 +181,7 @@ const PlantsPage = () => {
                             <input id="h2oFrequency" type="text" name="h2oFrequency"
                                 value={plantState.h2oFrequency} onChange={change} />
                             {errors.h2oFrequency.length > 0 ? <p>{errors.h2oFrequency}</p> : null}</label>
-                        <button disabled={bDisabled} type="submit"><h2>Submit</h2></button>
+                        <button disabled={bDisabled} type="submit"><h2>{bDisabled ? 'Enter More Data' : 'Submit'}</h2></button>
                         <pre>{JSON.stringify(p, null, 2)}</pre>
                     </StyledFormInput>
                 </form>
