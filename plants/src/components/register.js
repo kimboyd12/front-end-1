@@ -1,5 +1,5 @@
 import React from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import styled from "styled-components";
 
@@ -123,12 +123,15 @@ class Register extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-    .post("https://water-my-plants-back-end1.herokuapp.com/users/register", this.state.credentials)
-    .then((response) => {
-      localStorage.setItem("token", response.data.payload);
-      this.props.history.push("/plants")
-    })
-    .catch((error) => console.log(error))
+      .post(
+        "https://water-my-plants-back-end1.herokuapp.com/users/register",
+        this.state.credentials
+      )
+      .then((response) => {
+        localStorage.setItem("token", response.data.payload);
+        this.props.history.push("/plants");
+      })
+      .catch((error) => console.log(error));
   };
 
   render() {
