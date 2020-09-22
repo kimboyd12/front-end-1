@@ -22,9 +22,15 @@ const PlantsPage = () => {
         const newPlantState = { ...plantState, [e.target.name]: e.target.value }
         setPlantState(newPlantState);
     }
+    useEffect(() => {
+        axios.get('https://water-my-plants-back-end1.herokuapp.com/plants/')
+            .then((response) => {
+                console.log(response.data);
+            });
+    }, []);
     const submit = (e) => {
         e.preventDefault();
-        axios.post(plantState)
+        axios.post("https://water-my-plants-back-end1.herokuapp.com/plants/", plantState)
             .then((res) => {
                 setP([p, res.data]);
                 setPlantState({
