@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const initialProfile = {
-    password: "",
-    phoneNumber: "",
+  password: "",
+  phoneNumber: "",
 };
 
 const UpdatePlants = (props) => {
@@ -37,23 +37,23 @@ const UpdatePlants = (props) => {
     <div>
       <h3>Update your Information</h3>
       <form onSubmit={handleUpdate}>
-      <label htmlFor="password">Password:</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                value={profileUpdate.password}
-                onChange={handleChanges}
-              />
+        <label htmlFor="password">Password:</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          value={profileUpdate.password}
+          onChange={handleChanges}
+        />
 
-              <label htmlFor="password">Phone Number:</label>
-              <input
-                id="phoneNumber"
-                name="phoneNumber"
-                type="phoneNumebr"
-                value={profileUpdate.phoneNumber}
-                onChange={handleChanges}
-              />
+        <label htmlFor="password">Phone Number:</label>
+        <input
+          id="phoneNumber"
+          name="phoneNumber"
+          type="phoneNumebr"
+          value={profileUpdate.phoneNumber}
+          onChange={handleChanges}
+        />
         <button type="update">Update Profile</button>
       </form>
     </div>
