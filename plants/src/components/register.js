@@ -351,22 +351,6 @@ function Register() {
     setRegister({ ...register, [e.target.name]: value });
   };
 
-  //submit my form
-  // const formSubmit = e => {
-  //   e.preventDefault();
-  //   console.log("Logging in!");
-  //   axios
-  //     .post("https://water-my-plants2-be.herokuapp.com/api/auth/login", login)
-  //     .then((res) => {
-  //       setPost(res.data);
-  //       console.log("Logging in", res)
-  //   })
-  //     .catch(err => console.log(err));
-  //     setLogin({
-  //       username:'',
-  //       password:'',
-  //     })
-  // };
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -438,11 +422,7 @@ function Register() {
               value={register.phoneNumber}
             />
             {error.phoneNumber.length > 7 ? <p>{error.phoneNumber}</p> : null}
-            <br />
-            {/* <button disabled={buttonDisabled}>Register</button>
-
-      <pre>{JSON.stringify(Register, null, 2)}</pre>
-    </form> */}
+            <pre>{JSON.stringify(Register, null, 2)}</pre>
             <button
               disabled={buttonDisabled}
               data-cy="submit-button"
