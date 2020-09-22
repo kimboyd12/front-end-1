@@ -446,7 +446,7 @@ function Register() {
             <button
               disabled={buttonDisabled}
               data-cy="submit-button"
-              onClick={inputChange}
+              onClick={formSubmit}
             >
               Register
             </button>
