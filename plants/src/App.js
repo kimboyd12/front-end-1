@@ -49,13 +49,19 @@ function App() {
       </div>
 
       <Switch>
+
         <PrivateRoute path="/plants" component={Plants} />
+
 
         <Route path="/home">
           <h1>Insert Marketing Page Here</h1>
         </Route>
 
-        <Route exact path="/signup" component={Register} />
+
+
+
+        <Route exact path="/signup" component={Register}/>
+      
 
         <Route path="/">
           <Login />
