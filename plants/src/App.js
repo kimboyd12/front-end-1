@@ -43,6 +43,14 @@ function App() {
           </div>
           <div class="item">
             <div class="ui button">
+              <Link className="link" to="/profile">
+                Profile
+              </Link>
+            </div>
+            </div>
+
+            <div class="item">
+            <div class="ui button">
               <Link className="link" to="/" onClick={handleSignOut}>
                 Logout
               </Link>
