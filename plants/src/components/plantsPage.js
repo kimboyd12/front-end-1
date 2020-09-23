@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Plants from "./plants";
 import { connect } from "react-redux";
 import { addingPlant } from "../actions/plantActions";
+import axiosWithAuth from "../utils/axiosWithAuth"
 
 const FormContainer = styled.div`
   display: flex;
@@ -157,7 +158,7 @@ const PlantsPage = (props) => {
   const submit = (e) => {
     e.preventDefault();
 
-    axios
+    axiosWithAuth()
       .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
       .then((r) => {
         setP([r.data]);
