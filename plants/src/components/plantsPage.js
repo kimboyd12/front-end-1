@@ -156,9 +156,9 @@ const PlantsPage = (props) => {
   };
   const submit = (e) => {
     e.preventDefault();
-  
+
     axios
-      .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
+      .post(`https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:{id}`, plantState)
       .then((r) => {
         setP([r.data]);
       })
@@ -166,8 +166,8 @@ const PlantsPage = (props) => {
         console.log(e.response);
       });
   };
-//   console.log(p);
-//   console.log(output);
+  //   console.log(p);
+  //   console.log(output);
   // console.log(Plants.nickname)
   return (
     <FormContainer>
@@ -219,7 +219,7 @@ const PlantsPage = (props) => {
         </form>
       </StyledForm>
       <StyledOutput>
-        <p>{JSON.stringify(p, null, 1)}</p>
+        <p>{Plants.nickname}</p>
       </StyledOutput>
     </FormContainer>
     // need to change the JSON stringify to a list of plants
@@ -227,10 +227,10 @@ const PlantsPage = (props) => {
 };
 
 const mapStateToProps = state => {
-    return {
-        plants: state.plants,
-        error: state.error
-    }
+  return {
+    plants: state.plants,
+    error: state.error
+  }
 }
 
-export default connect(mapStateToProps,{addingPlant})(PlantsPage);
+export default connect(mapStateToProps, { addingPlant })(PlantsPage);
