@@ -10,7 +10,9 @@ import Profile from "./components/Profile";
 // import PlantPage from "./components/plantsPage";
 // import UpdatePlants from "./components/updateForms/updatePlants";
 import UpdatePlants from "./components/updateForms/updatePlants";
+
 import UpdateInformation from "./components/updateForms/updateInformation";
+
 
 function App() {
   const { push } = useHistory();
@@ -47,9 +49,11 @@ function App() {
                 Profile
               </Link>
             </div>
+
           </div>
 
           <div class="item">
+
             <div class="ui button">
               <Link className="link" to="/" onClick={handleSignOut}>
                 Logout
