@@ -5,7 +5,7 @@ import { Route, Switch, Link, useHistory } from "react-router-dom";
 import "./App.css";
 import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
-// import Plants from "./components/plantsFolder/plants";
+import Plants from "./components/plantsFolder/plantsPage";
 
 function App() {
   const { push } = useHistory();
