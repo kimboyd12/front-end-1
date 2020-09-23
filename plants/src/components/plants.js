@@ -11,11 +11,11 @@ const Plants = props => {
         axios.get('https://water-my-plants-back-end1.herokuapp.com/plants/')
             .then((r) => {
                 setPlants(r);
-                console.log(r.data);
+                console.log(props.r.data);
             });
     }, []);
-    //return (Plants)
-
+    console.log(plants.data)
+    return (plants.data)
 }
 
 
