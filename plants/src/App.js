@@ -7,6 +7,7 @@ import Register from "./components/register";
 import Plants from "./components/plantsFolder/plantsPage";
 
 import PrivateRoute from "./utils/PrivateRoute";
+import Plants from "./components/plantsFolder/plants";
 
 function App() {
   const { push } = useHistory();
@@ -49,8 +50,7 @@ function App() {
 
       <Switch>
         <PrivateRoute path="/plants">
-          <h1>Plants Go here</h1>
-          <Plants />
+          <PlantsPage></PlantsPage>
         </PrivateRoute>
         <Route path="/home">
           <h1>Insert Marketing Page Here</h1>

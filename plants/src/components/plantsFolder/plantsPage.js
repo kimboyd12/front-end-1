@@ -45,14 +45,22 @@ const StyledForm = styled.div`
 
   align-items: center;
 
-  @media (max-width: 1000px) {
-    width: 45%;
-  }
 
   form {
     width: 100%;
   }
 `;
+
+const StyledOutput = styled.div`
+p {
+    color: black;
+    margin-top: 2%;
+    font-size: 1rem;
+    font-family: "Quicksand", sans-serif;
+  }
+
+
+`
 
 const StyledFormInput = styled.div`
   display: flex;
@@ -98,23 +106,20 @@ const StyledFormInput = styled.div`
   }
 `;
 
-const PlantsPage = () => {
+const PlantsPage = props => {
     const [bDisabled, setbDisabled] = useState();
     const [p, setP] = useState();
     const [errors, setErrors] = useState({
-        id: '',
         nickname: '',
         species: '',
         h2oFrequency: ''
     })
     const [plantState, setPlantState] = useState({
-        id: '',
-        nickname: '',
-        species: '',
-        h2oFrequency: ''
+        nickname: props.nickname,
+        species: props.species,
+        h2oFrequency: props.h2oFrequency
     });
     const d = yup.object().shape({
-        id: yup.string().required(),
         nickname: yup.string().required(),
         species: yup.string().required(),
         h2oFrequency: yup.string().required()
@@ -138,45 +143,32 @@ const PlantsPage = () => {
             setbDisabled(!isValid);
         });
     }, [plantState]);
-
-
+    // const output = JSON.stringify(p, null, 1);
+    const [output, setOutput] = useState();
     const change = (e) => {
         e.persist();
         const newPlantState = { ...plantState, [e.target.name]: e.target.value }
         vChange(e);
         setPlantState(newPlantState);
     }
-    useEffect(() => {
-        axios.get('https://water-my-plants-back-end1.herokuapp.com/plants/')
-            .then((response) => {
-                console.log(response.data);
-            });
-    }, []);
     const submit = (e) => {
         e.preventDefault();
         axios.post("https://reqres.in/api/users", plantState)
             .then((r) => {
-                setP([p, r.data]);
-                setPlantState({
-                    id: '',
-                    nickname: '',
-                    species: '',
-                    h2oFrequency: ''
-                })
+                setP([r.data]);
             })
             .catch((e) => {
                 console.log(e.response)
             });
     }
+    console.log(p)
+    console.log(output)
+    // console.log(Plants.nickname)
     return (
         <FormContainer>
             <StyledForm>
                 <form onSubmit={submit}>
                     <StyledFormInput>
-                        <label htmlFor="id"><h2> ID</h2>
-                            <input id="id" type="text" id="id"
-                                value={plantState.name} onChange={change} />
-                            {errors.id.length > 0 ? <p>{errors.id}</p> : null}</label>
                         <label htmlFor="nickname"> <h2>Nickname</h2>
                             <input id="nickname" type="text" name="nickname"
                                 value={plantState.nickname} onChange={change} />
@@ -189,12 +181,16 @@ const PlantsPage = () => {
                             <input id="h2oFrequency" type="text" name="h2oFrequency"
                                 value={plantState.h2oFrequency} onChange={change} />
                             {errors.h2oFrequency.length > 0 ? <p>{errors.h2oFrequency}</p> : null}</label>
-                        <button disabled={bDisabled} type="submit"><h2>Submit</h2></button>
-                        <pre>{JSON.stringify(p, null, 2)}</pre>
+                        <button disabled={bDisabled} type="submit"><h2>{bDisabled ? 'Enter More Data' : 'Submit'}</h2></button>
+
                     </StyledFormInput>
                 </form>
             </StyledForm>
+            <StyledOutput>
+                <p>{JSON.stringify(p, null, 1)}</p>
+            </StyledOutput>
         </FormContainer>
+        // need to change the JSON stringify to a list of plants
     );
 }
 
