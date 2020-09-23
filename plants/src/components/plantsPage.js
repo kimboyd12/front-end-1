@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import * as yup from 'yup';
-import axios from 'axios';
-import styled from 'styled-components';
-import Plants from './plants';
+import React, { useState, useEffect } from "react";
+import * as yup from "yup";
+import axios from "axios";
+import styled from "styled-components";
+import Plants from "./plants";
+import {Link} from "react-router-dom";
 
 const FormContainer = styled.div`
   display: flex;
@@ -38,13 +39,13 @@ const StyledForm = styled.div`
   width: 100%;
   padding: 2%;
   border-radius: 2rem;
-  box-shadow: 0 4rem 8rem 0 rgba(0, 0, 0, 0.2), 0 6rem 20rem 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4rem 8rem 0 rgba(0, 0, 0, 0.2),
+    0 6rem 20rem 0 rgba(0, 0, 0, 0.19);
 
   display: flex;
   flex-direction: row;
 
   align-items: center;
-
 
   form {
     width: 100%;
@@ -52,15 +53,13 @@ const StyledForm = styled.div`
 `;
 
 const StyledOutput = styled.div`
-p {
+  p {
     color: black;
     margin-top: 2%;
     font-size: 1rem;
     font-family: "Quicksand", sans-serif;
   }
-
-
-`
+`;
 
 const StyledFormInput = styled.div`
   display: flex;
@@ -106,92 +105,127 @@ const StyledFormInput = styled.div`
   }
 `;
 
-const PlantsPage = props => {
-    const [bDisabled, setbDisabled] = useState();
-    const [p, setP] = useState();
-    const [errors, setErrors] = useState({
-        nickname: '',
-        species: '',
-        h2oFrequency: ''
-    })
-    const [plantState, setPlantState] = useState({
-        nickname: props.nickname,
-        species: props.species,
-        h2oFrequency: props.h2oFrequency
-    });
-    const d = yup.object().shape({
-        nickname: yup.string().required(),
-        species: yup.string().required(),
-        h2oFrequency: yup.string().required()
-    });
-    const vChange = (e) => {
-        yup.reach(d, e.target.name)
-            .validate(e.target.value)
-            .then(() => {
-                setErrors({
-                    ...errors, [e.target.name]: ""
-                })
-            })
-            .catch((err) => {
-                setErrors({
-                    ...errors, [e.target.name]: err.errors[0]
-                })
-            });
-    }
-    useEffect(() => {
-        d.isValid(plantState).then((isValid) => {
-            setbDisabled(!isValid);
+const PlantsPage = (props) => {
+  const [bDisabled, setbDisabled] = useState();
+  const [p, setP] = useState();
+  const [errors, setErrors] = useState({
+    nickname: "",
+    species: "",
+    h2oFrequency: "",
+  });
+  const [plantState, setPlantState] = useState({
+    nickname: props.nickname,
+    species: props.species,
+    h2oFrequency: props.h2oFrequency,
+  });
+  const d = yup.object().shape({
+    nickname: yup.string().required(),
+    species: yup.string().required(),
+    h2oFrequency: yup.string().required(),
+  });
+  const vChange = (e) => {
+    yup
+      .reach(d, e.target.name)
+      .validate(e.target.value)
+      .then(() => {
+        setErrors({
+          ...errors,
+          [e.target.name]: "",
         });
-    }, [plantState]);
-    // const output = JSON.stringify(p, null, 1);
-    const [output, setOutput] = useState();
-    const change = (e) => {
-        e.persist();
-        const newPlantState = { ...plantState, [e.target.name]: e.target.value }
-        vChange(e);
-        setPlantState(newPlantState);
-    }
-    const submit = (e) => {
-        e.preventDefault();
-        axios.post("https://reqres.in/api/users", plantState)
-            .then((r) => {
-                setP([r.data]);
-            })
-            .catch((e) => {
-                console.log(e.response)
-            });
-    }
-    console.log(p)
-    console.log(output)
-    // console.log(Plants.nickname)
-    return (
-        <FormContainer>
-            <StyledForm>
-                <form onSubmit={submit}>
-                    <StyledFormInput>
-                        <label htmlFor="nickname"> <h2>Nickname</h2>
-                            <input id="nickname" type="text" name="nickname"
-                                value={plantState.nickname} onChange={change} />
-                            {errors.nickname.length > 0 ? <p>{errors.nickname}</p> : null}</label>
-                        <label htmlFor="species"> <h2>Species</h2>
-                            <input id="species" type="text" name="species"
-                                value={plantState.species} onChange={change} />
-                            {errors.species.length > 0 ? <p>{errors.species}</p> : null} </label>
-                        <label htmlFor="h2oFrequency"> <h2> Watering Amt</h2>
-                            <input id="h2oFrequency" type="text" name="h2oFrequency"
-                                value={plantState.h2oFrequency} onChange={change} />
-                            {errors.h2oFrequency.length > 0 ? <p>{errors.h2oFrequency}</p> : null}</label>
-                        <button disabled={bDisabled} type="submit"><h2>{bDisabled ? 'Enter More Data' : 'Submit'}</h2></button>
+      })
+      .catch((err) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0],
+        });
+      });
+  };
+  useEffect(() => {
+    d.isValid(plantState).then((isValid) => {
+      setbDisabled(!isValid);
+    });
+  }, [plantState]);
+  // const output = JSON.stringify(p, null, 1);
+  const [output, setOutput] = useState();
+  const change = (e) => {
+    e.persist();
+    const newPlantState = { ...plantState, [e.target.name]: e.target.value };
+    vChange(e);
+    setPlantState(newPlantState);
+  };
+  const submit = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://reqres.in/api/users", plantState)
+      .then((r) => {
+        setP([r.data]);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  };
+  console.log(p);
+  console.log(output);
+  // console.log(Plants.nickname)
+  return (
+    <FormContainer>
+      <StyledForm>
+        <form onSubmit={submit}>
+          <StyledFormInput>
+            <label htmlFor="nickname">
+              {" "}
+              <h2>Nickname</h2>
+              <input
+                id="nickname"
+                type="text"
+                name="nickname"
+                value={plantState.nickname}
+                onChange={change}
+              />
+              {errors.nickname.length > 0 ? <p>{errors.nickname}</p> : null}
+            </label>
+            <label htmlFor="species">
+              {" "}
+              <h2>Species</h2>
+              <input
+                id="species"
+                type="text"
+                name="species"
+                value={plantState.species}
+                onChange={change}
+              />
+              {errors.species.length > 0 ? <p>{errors.species}</p> : null}{" "}
+            </label>
+            <label htmlFor="h2oFrequency">
+              {" "}
+              <h2> Watering Amt</h2>
+              <input
+                id="h2oFrequency"
+                type="text"
+                name="h2oFrequency"
+                value={plantState.h2oFrequency}
+                onChange={change}
+              />
+              {errors.h2oFrequency.length > 0 ? (
+                <p>{errors.h2oFrequency}</p>
+              ) : null}
+            </label>
+            <button disabled={bDisabled} type="submit">
+              <h2>{bDisabled ? "Enter More Data" : "Submit"}</h2>
+            </button>
 
-                    </StyledFormInput>
-                </form>
-            </StyledForm>
-            <StyledOutput>
-                <p>{JSON.stringify(p, null, 1)}</p>
-            </StyledOutput>
-        </FormContainer>
-        // need to change the JSON stringify to a list of plants
-    );
-}
+            <Link to="/updateaccount">
+              <button>Update Your Profile</button>
+            </Link>
+          </StyledFormInput>
+        </form>
+      </StyledForm>
+      <StyledOutput>
+        <p>{JSON.stringify(p, null, 1)}</p>
+      </StyledOutput>
+    </FormContainer>
+    // need to change the JSON stringify to a list of plants
+  );
+};
 
-export default PlantsPage
+export default PlantsPage;

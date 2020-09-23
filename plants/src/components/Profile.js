@@ -15,8 +15,11 @@ export default function Profile() {
       <Link to="/plantlist">
         <button>View Your Plants</button>
       </Link>
-      <Link to="/protected">
+      <Link to="/plants">
         <button>Add Plants</button>
+      </Link>
+      <Link to="/updateaccount">
+        <button>Update Your Profile</button>
       </Link>
     </div>
   );

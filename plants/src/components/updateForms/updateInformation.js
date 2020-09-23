@@ -21,12 +21,12 @@ const UpdatePlants = (props) => {
     e.preventDefault();
     axiosWithAuth()
       .put(
-        `https://water-my-plants-back-end1.herokuapp.com/users/${id}`,
+        `https://water-my-plants-back-end1.herokuapp.com/users/${profileUpdate.id}`,
         profileUpdate
       )
       .then((response) => {
         props.setProfileUpdate(response.data);
-        props.history.push(`protected`);
+        props.history.push(`profile`);
       })
       .catch((error) => {
         console.log(error);
