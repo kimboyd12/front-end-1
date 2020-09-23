@@ -5,7 +5,7 @@ import { Route, Switch, Link, useHistory } from "react-router-dom";
 import "./App.css";
 import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
-import Plants from "./components/plantsFolder/plants";
+import Plants from "./components/plants";
 
 function App() {
   const { push } = useHistory();
@@ -48,7 +48,7 @@ function App() {
 
       <Switch>
         <PrivateRoute path="/plants">
-          <PlantsPage></PlantsPage>
+          <Plants></Plants>
         </PrivateRoute>
         <Route path="/home">
           <h1>Insert Marketing Page Here</h1>
