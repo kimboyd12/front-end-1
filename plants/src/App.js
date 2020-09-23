@@ -6,6 +6,8 @@ import "./App.css";
 import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
 import Plants from "./components/plantsPage";
+// import PlantPage from "./components/plantsPage";
+// import UpdatePlants from "./components/updateForms/updatePlants";
 
 function App() {
   const { push } = useHistory();
@@ -54,14 +56,13 @@ function App() {
           <h1>Insert Marketing Page Here</h1>
         </Route>
 
-        <Route path="/signup">
-          <Register />
-        </Route>
+        <Route exact path="/signup" component={Register}/>
+      
         <Route path="/">
           <Login />
         </Route>
       </Switch>
-    </div >
+    </div>
   );
 }
 
