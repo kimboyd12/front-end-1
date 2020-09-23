@@ -156,20 +156,15 @@ const PlantsPage = (props) => {
   };
   const submit = (e) => {
     e.preventDefault();
-    props.addingPlant(plantState);
-    setPlantState({
-      nickname: "",
-      species: "",
-      h2oFrequency: "",
-    });
-    // axios
-    //   .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
-    //   .then((r) => {
-    //     setP([r.data]);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e.response);
-    //   });
+  
+    axios
+      .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
+      .then((r) => {
+        setP([r.data]);
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
   };
 //   console.log(p);
 //   console.log(output);
