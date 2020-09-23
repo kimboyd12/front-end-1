@@ -135,7 +135,6 @@ function Register(props) {
     username: "",
     password: "",
     phoneNumber: "",
-   
   });
 
   //validating my schema
@@ -171,9 +170,12 @@ function Register(props) {
     e.preventDefault();
     console.log("Registering");
     axios
-      .post("https://water-my-plants-back-end1.herokuapp.com/users/register", register)
+      .post(
+        "https://water-my-plants-back-end1.herokuapp.com/users/register",
+        register
+      )
       .then((response) => {
-        localStorage.setItem("token", response.data.payload);
+        localStorage.setItem("token", response.data.message);
         props.history.push("/login");
       })
       .catch((error) => console.log(error));
@@ -181,7 +183,6 @@ function Register(props) {
       username: "",
       password: "",
       phoneNumber: "",
-     
     });
   };
 
@@ -236,7 +237,6 @@ function Register(props) {
               value={register.phoneNumber}
             />
             {error.phoneNumber.length > 5 ? <p>{error.phoneNumber}</p> : null}
-           
             <pre>{JSON.stringify(Register, null, 2)}</pre>
             {/* <button disabled={buttonDisabled}>Register</button>
 
