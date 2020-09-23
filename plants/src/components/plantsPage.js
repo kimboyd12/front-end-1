@@ -158,14 +158,7 @@ const PlantsPage = (props) => {
     e.preventDefault();
 
     axios
-<<<<<<< HEAD
-      .post(`https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:{id}`, plantState)
-=======
-      .post(
-        "https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id",
-        plantState
-      )
->>>>>>> 446d3b56fc60cde56508f6ff48bb698d10ac5593
+      .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
       .then((r) => {
         setP([r.data]);
       })
@@ -233,20 +226,11 @@ const PlantsPage = (props) => {
   );
 };
 
-<<<<<<< HEAD
 const mapStateToProps = state => {
   return {
     plants: state.plants,
     error: state.error
   }
 }
-=======
-const mapStateToProps = (state) => {
-  return {
-    plants: state.plants,
-    error: state.error,
-  };
-};
->>>>>>> 446d3b56fc60cde56508f6ff48bb698d10ac5593
 
 export default connect(mapStateToProps, { addingPlant })(PlantsPage);
