@@ -5,6 +5,7 @@ import { Route, Switch, Link, useHistory } from "react-router-dom";
 import "./App.css";
 import Register from "./components/register";
 import Plants from "./components/plantsFolder/plantsPage"
+import UpdatePlant from "./components/updateForms/updatePlants"
 
 import PrivateRoute from "./utils/PrivateRoute";
 
@@ -62,6 +63,8 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
+
+        <PrivateRoute exact path="/plants/:id" component={UpdatePlant} />
 
       </Switch>
     </div>

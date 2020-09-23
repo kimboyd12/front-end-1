@@ -14,7 +14,7 @@ export const loginUser = (credentials, props) => (dispatch) => {
       console.log("Login", res.data);
       localStorage.setItem("token", res.data.token);
 
-      props.history.push("/home");
+      props.history.push("https://water-my-plants-back-end1.herokuapp.com/plants/");
     })
     .catch((err) => {
       dispatch({ type: LOGIN_USER_FAILURE });
