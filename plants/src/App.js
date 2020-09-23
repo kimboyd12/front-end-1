@@ -6,8 +6,11 @@ import "./App.css";
 import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
 import Plants from "./components/plantsPage";
+import Profile from "./components/Profile";
 // import PlantPage from "./components/plantsPage";
 // import UpdatePlants from "./components/updateForms/updatePlants";
+import UpdatePlants from "./components/updateForms/updatePlants";
+import UpdateInformation from "./components/updateForms/updateInformation";
 
 function App() {
   const { push } = useHistory();
@@ -40,6 +43,14 @@ function App() {
           </div>
           <div class="item">
             <div class="ui button">
+              <Link className="link" to="/profile">
+                Profile
+              </Link>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ui button">
               <Link className="link" to="/" onClick={handleSignOut}>
                 Logout
               </Link>
@@ -48,19 +59,17 @@ function App() {
         </div>
       </div>
 
-      <Switch>
-        <PrivateRoute path="/plants" component={Plants} />
+      <Route exact path="/login" component={Login} />
+      <Route path="/signup" component={Register} />
 
-        <Route path="/home">
-          <h1>Insert Marketing Page Here</h1>
-        </Route>
+      <PrivateRoute exact path="/profile" component={Profile} />
+      <PrivateRoute exact path="/plants" component={Plants} />
 
-        <Route exact path="/signup" component={Register} />
+      <PrivateRoute exact path="/plantsPage" component={Plants} />
 
-        <Route path="/">
-          <Login />
-        </Route>
-      </Switch>
+      <PrivateRoute exact path="/plants/:id" component={UpdatePlants} />
+
+      <PrivateRoute exact path="/updateaccount" component={UpdateInformation} />
     </div>
   );
 }
