@@ -45,14 +45,22 @@ const StyledForm = styled.div`
 
   align-items: center;
 
-  @media (max-width: 1000px) {
-    width: 45%;
-  }
 
   form {
     width: 100%;
   }
 `;
+
+const StyledOutput = styled.div`
+p {
+    color: #c6d7dd;
+    margin-top: 2%;
+    font-size: 1rem;
+    font-family: "Quicksand", sans-serif;
+  }
+
+
+`
 
 const StyledFormInput = styled.div`
   display: flex;
@@ -135,8 +143,7 @@ const PlantsPage = props => {
             setbDisabled(!isValid);
         });
     }, [plantState]);
-
-
+    const output = JSON.stringify(p, null, 1);
     const change = (e) => {
         e.persist();
         const newPlantState = { ...plantState, [e.target.name]: e.target.value }
@@ -154,11 +161,6 @@ const PlantsPage = props => {
         axios.post("https://reqres.in/api/users", plantState)
             .then((r) => {
                 setP([p, r.data]);
-                setPlantState({
-                    nickname: '',
-                    species: '',
-                    h2oFrequency: ''
-                })
             })
             .catch((e) => {
                 console.log(e.response)
@@ -182,10 +184,16 @@ const PlantsPage = props => {
                                 value={plantState.h2oFrequency} onChange={change} />
                             {errors.h2oFrequency.length > 0 ? <p>{errors.h2oFrequency}</p> : null}</label>
                         <button disabled={bDisabled} type="submit"><h2>{bDisabled ? 'Enter More Data' : 'Submit'}</h2></button>
-                        <pre>{JSON.stringify(p, null, 2)}</pre>
+
                     </StyledFormInput>
                 </form>
             </StyledForm>
+            <StyledOutput>
+                {/* <p>{p.name}</p>
+                <p>{p.species}</p>
+                <p>{p.h2oFrequency}</p> */}
+
+            </StyledOutput>
         </FormContainer>
     );
 }
