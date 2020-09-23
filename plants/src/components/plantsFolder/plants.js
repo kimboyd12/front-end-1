@@ -14,8 +14,8 @@ const Plants = props => {
                 console.log(props.r.data);
             });
     }, []);
-    return (plants)
-
+    console.log(plants.data)
+    return (plants.data)
 }
 
 

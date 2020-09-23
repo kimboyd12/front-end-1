@@ -53,7 +53,7 @@ const StyledForm = styled.div`
 
 const StyledOutput = styled.div`
 p {
-    color: #c6d7dd;
+    color: black;
     margin-top: 2%;
     font-size: 1rem;
     font-family: "Quicksand", sans-serif;
@@ -143,29 +143,27 @@ const PlantsPage = props => {
             setbDisabled(!isValid);
         });
     }, [plantState]);
-    const output = JSON.stringify(p, null, 1);
+    // const output = JSON.stringify(p, null, 1);
+    const [output, setOutput] = useState();
     const change = (e) => {
         e.persist();
         const newPlantState = { ...plantState, [e.target.name]: e.target.value }
         vChange(e);
         setPlantState(newPlantState);
     }
-    useEffect(() => {
-        axios.get('https://water-my-plants-back-end1.herokuapp.com/plants/')
-            .then((response) => {
-                console.log(response.data);
-            });
-    }, []);
     const submit = (e) => {
         e.preventDefault();
         axios.post("https://reqres.in/api/users", plantState)
             .then((r) => {
-                setP([p, r.data]);
+                setP([r.data]);
             })
             .catch((e) => {
                 console.log(e.response)
             });
     }
+    console.log(p)
+    console.log(output)
+    // console.log(Plants.nickname)
     return (
         <FormContainer>
             <StyledForm>
@@ -189,12 +187,10 @@ const PlantsPage = props => {
                 </form>
             </StyledForm>
             <StyledOutput>
-                {/* <p>{p.name}</p>
-                <p>{p.species}</p>
-                <p>{p.h2oFrequency}</p> */}
-
+                <p>{JSON.stringify(p, null, 1)}</p>
             </StyledOutput>
         </FormContainer>
+        // need to change the JSON stringify to a list of plants
     );
 }
 
