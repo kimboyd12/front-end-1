@@ -4,8 +4,6 @@ import Login from "./components/login";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import "./App.css";
 import Register from "./components/register";
-import Plants from "./components/plantsFolder/plantsPage";
-
 import PrivateRoute from "./utils/PrivateRoute";
 // import Plants from "./components/plantsFolder/plants";
 
