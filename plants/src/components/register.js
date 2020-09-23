@@ -180,7 +180,7 @@
 
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import styled from "styled-components";
 

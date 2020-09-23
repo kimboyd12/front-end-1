@@ -4,14 +4,15 @@ import Login from "./components/login";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import "./App.css";
 import Register from "./components/register";
-import PlantsPage from "./components/plantsFolder/plantsPage"
+import Plants from "./components/plantsFolder/plantsPage";
+
 import PrivateRoute from "./utils/PrivateRoute";
 import Plants from "./components/plantsFolder/plants";
 
 function App() {
   const { push } = useHistory();
   const handleSignOut = () => {
-    push("/home");
+    push("/");
     localStorage.removeItem("token");
   };
   return (
@@ -39,7 +40,7 @@ function App() {
           </div>
           <div class="item">
             <div class="ui button">
-              <Link className="link" to="/home" onClick={handleSignOut}>
+              <Link className="link" to="/" onClick={handleSignOut}>
                 Logout
               </Link>
             </div>
@@ -58,7 +59,7 @@ function App() {
         <Route path="/signup">
           <Register />
         </Route>
-        <Route path="/login">
+        <Route path="/">
           <Login />
         </Route>
       </Switch>
