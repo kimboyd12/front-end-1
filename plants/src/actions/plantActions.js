@@ -21,7 +21,7 @@ export const getPlants = () => (dispatch) => {
 };
 
 
-export const addingPlant = addPlant => dispatch => {
+export const addingPlant = (addPlant) => dispatch => {
     axios
         .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", addPlant)
         .then(response => {
@@ -33,3 +33,4 @@ export const addingPlant = addPlant => dispatch => {
             dispatch({ type: ADD_PLANT_FAILED, payload: error.data })
         });
 };
+
