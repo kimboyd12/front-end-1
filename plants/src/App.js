@@ -64,7 +64,8 @@ function App() {
           <Login />
         </Route>
 
-        <PrivateRoute exact path="/plants/:id" component={UpdatePlant} />
+  
+        <Route exact path="/plants/:id" component={UpdatePlant} />
 
       </Switch>
     </div>

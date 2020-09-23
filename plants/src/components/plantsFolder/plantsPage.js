@@ -218,7 +218,6 @@ const PlantsPage = () => {
             </button>
             <pre>{JSON.stringify(p, null, 2)}</pre>
 
-            <button >Edit Plant</button>
           </StyledFormInput>
         </form>
       </StyledForm>
