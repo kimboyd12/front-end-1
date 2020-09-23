@@ -48,7 +48,7 @@ function App() {
 
       <Switch>
         <PrivateRoute path="/plants">
-          <Plants></Plants>
+          <Plants />
         </PrivateRoute>
         <Route path="/home">
           <h1>Insert Marketing Page Here</h1>
@@ -61,7 +61,7 @@ function App() {
           <Login />
         </Route>
       </Switch>
-    </div>
+    </div >
   );
 }
 
