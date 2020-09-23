@@ -4,13 +4,16 @@ import axios from "axios";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { getPlants } from "../actions/plantActions"
+import Plant from "./plantsPage";
+import axiosWithAuth from "../utils/axiosWithAuth"
 
 const Plants = props => {
 
     const [plants, setPlants] = useState();
 
     useEffect(() => {
-        axios.get('https://water-my-plants-back-end1.herokuapp.com/plants/')
+        axiosWithAuth()
+        .get('https://water-my-plants-back-end1.herokuapp.com/plants/:id/plantsList')
             .then((r) => {
                 setPlants(r);
                 console.log(props.r.data);
@@ -22,16 +25,14 @@ const Plants = props => {
     }, []);
 
     return (
-        <div>
-            <div className="plants">
-                {props.plants.map((plant) => (
-                    <div className="plant" key={plant.id}>
-                        <p>Name : {plant.nickname}</p>
-                        <p>Species:{plant.species}</p>
-                        <p>Water Schedule:{plant.h2o_frequency}</p>
-                    </div>
-                ))}
-            </div>
+        <div className="plants">
+            {props.plants.map(plant =>
+                <Plant
+                    key={plant.id}
+                    nickname={plant.nickname}
+                    species={plant.species}
+                    h2ofrequency={plant.h2o_frequency}
+                />)}
         </div>
     );
 };
