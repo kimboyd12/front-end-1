@@ -5,6 +5,11 @@ export const LOGIN_USER_START = "LOGIN_USER_START";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 
+//Logout user...
+export const LOGOUT_USER_START = "LOGOUT_USER_START";
+export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
+export const LOGOUT_USER_FAILURE = "LOGOUT_USER_FAILURE";
+
 //Delete concermn...
 export const DELETE_PLANT_START = "DELETE_PLANT_START";
 export const DELETE_PLANT_SUCCESS = "DELETE_PLANT_SUCCESS";
@@ -23,13 +28,22 @@ export const loginUser = (credentials, props) => (dispatch) => {
     .then((res) => {
       dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data });
       console.log("Login", res.data);
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.data.payload);
 
       props.history.push("/plants");
     })
     .catch((err) => {
       dispatch({ type: LOGIN_USER_FAILURE });
     });
+};
+
+export const logoutUser = (dispatch) => {
+  dispatch({ type: LOGOUT_USER_START }).then().catch();
+  dispatch({ type: LOGOUT_USER_SUCCESS, payload: "Successfully logged out" });
+  dispatch({
+    type: LOGOUT_USER_FAILURE,
+    payload: "Something went wrong. Please try again.",
+  });
 };
 
 export const deletePlant = (userId, id) => (dispatch) => {
