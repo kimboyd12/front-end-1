@@ -156,9 +156,12 @@ const PlantsPage = (props) => {
   };
   const submit = (e) => {
     e.preventDefault();
-  
+
     axios
-      .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
+      .post(
+        "https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id",
+        plantState
+      )
       .then((r) => {
         setP([r.data]);
       })
@@ -166,8 +169,8 @@ const PlantsPage = (props) => {
         console.log(e.response);
       });
   };
-//   console.log(p);
-//   console.log(output);
+  //   console.log(p);
+  //   console.log(output);
   // console.log(Plants.nickname)
   return (
     <FormContainer>
@@ -226,11 +229,11 @@ const PlantsPage = (props) => {
   );
 };
 
-const mapStateToProps = state => {
-    return {
-        plants: state.plants,
-        error: state.error
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    plants: state.plants,
+    error: state.error,
+  };
+};
 
-export default connect(mapStateToProps,{addingPlant})(PlantsPage);
+export default connect(mapStateToProps, { addingPlant })(PlantsPage);
