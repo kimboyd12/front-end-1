@@ -21,12 +21,23 @@ const Plants = (props) => {
   }, []);
 
   useEffect(() => {
+    axiosWithAuth()
+      .get(
+        "https://water-my-plants-back-end1.herokuapp.com/plants/:id/plantsList"
+      )
+      .then((r) => {
+        setPlants(r);
+        console.log(r.data);
+      });
+  }, []);
+
+  useEffect(() => {
     props.getPlants();
   }, []);
 
   return (
     <div className="plants">
-      {props.plants.map((plant) => (
+      {plants.map((plant) => (
         <Plant
           key={plant.id}
           nickname={plant.nickname}

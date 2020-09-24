@@ -111,7 +111,6 @@ const StyledFormInput = styled.div`
 const PlantsPage = (props) => {
   const { state } = props.location;
   const { user } = useSelector((state) => state);
-  console.log(state.id);
 
   const dispatch = useDispatch();
   const [bDisabled, setbDisabled] = useState();
@@ -226,11 +225,13 @@ const PlantsPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    plants: state.plants,
-    error: state.error,
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     plants: state.plants,
+//     error: state.error
+//   }
+// }
 
-export default connect(mapStateToProps, { addingPlant })(PlantsPage);
+// export default connect(mapStateToProps, { addingPlant })(PlantsPage);
+
+export default PlantsPage;
