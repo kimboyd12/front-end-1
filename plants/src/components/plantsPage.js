@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Plants from "./plants";
 import { connect } from "react-redux";
 import { addingPlant } from "../actions/plantActions";
-import axiosWithAuth from "../utils/axiosWithAuth"
 
 const FormContainer = styled.div`
   display: flex;
@@ -116,9 +115,9 @@ const PlantsPage = (props) => {
     h2oFrequency: "",
   });
   const [plantState, setPlantState] = useState({
-    nickname: props.nickname,
-    species: props.species,
-    h2oFrequency: props.h2oFrequency,
+    nickname: "",
+    species: "",
+    h2oFrequency: ""
   });
   const d = yup.object().shape({
     nickname: yup.string().required(),
@@ -158,10 +157,11 @@ const PlantsPage = (props) => {
   const submit = (e) => {
     e.preventDefault();
 
-    axiosWithAuth()
-      .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
+    axios
+      .post(`https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/1`, plantState)
       .then((r) => {
         setP([r.data]);
+        console.log(r.data);
       })
       .catch((e) => {
         console.log(e.response);
@@ -220,7 +220,7 @@ const PlantsPage = (props) => {
         </form>
       </StyledForm>
       <StyledOutput>
-        <p>{Plants.nickname}</p>
+        <p></p>
       </StyledOutput>
     </FormContainer>
     // need to change the JSON stringify to a list of plants

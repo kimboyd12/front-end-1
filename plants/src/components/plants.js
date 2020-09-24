@@ -13,7 +13,7 @@ const Plants = props => {
 
     useEffect(() => {
         axiosWithAuth()
-        .get('https://water-my-plants-back-end1.herokuapp.com/plants/:id/plantsList')
+            .get(`https://water-my-plants-back-end1.herokuapp.com/plants/1/plantsList`)
             .then((r) => {
                 setPlants(r);
                 console.log(props.r.data);
