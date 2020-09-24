@@ -27,11 +27,11 @@ export const ADD_PLANT_FAILURE = "ADD_PLANT_FAILURE";
 
 export const loginUser = (credentials, props) => (dispatch) => {
   dispatch({ type: LOGIN_USER_START });
-  console.log(credentials);
+  console.log("User", credentials);
   axiosWithAuth()
     .post("/users/login", credentials)
     .then((res) => {
-      dispatch({ type: LOGIN_USER_SUCCESS, payload: credentials });
+      dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data.user });
       console.log("Login", res.data);
       window.localStorage.setItem("token", res.data.token);
 
@@ -72,8 +72,8 @@ export const userPlants = (userId) => (dispatch) => {
   axiosWithAuth()
     .get(`/plants/${userId}/plantsList/`)
     .then((res) => {
-      dispatch({ type: USER_PLANTS_SUCCESS, payload: res.data.data });
-      console.log(res.data.data);
+      dispatch({ type: USER_PLANTS_SUCCESS, payload: res.data });
+      console.log(res.data);
     })
     .catch((err) => {
       dispatch({ type: USER_PLANTS_FAILURE });

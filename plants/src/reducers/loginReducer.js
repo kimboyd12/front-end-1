@@ -28,8 +28,16 @@ export const initialState = {
     phoneNumber: "",
   },
 
+  plant: {
+    id: "",
+    nickname: "",
+    species: "",
+    h2oFrequency: "",
+  },
+
   isLoggingIn: false,
   isLoggingOut: false,
+  isLoadinging: false,
   usersPlants: [],
 };
 
@@ -87,18 +95,18 @@ export const loginReducer = (state = initialState, action) => {
       };
 
     case ADD_PLANT_START:
-      return { ...state, isAdding: true, error: "", message: "" };
+      return { ...state, isLoading: true, error: "", message: "" };
     case ADD_PLANT_SUCCESS:
       return {
         ...state,
-        isAdding: false,
+        isLoading: false,
         message: "Plant successfully added!",
         usersPlants: [...state.usersPlants, action.payload],
       };
     case ADD_PLANT_FAILURE:
       return {
         ...state,
-        isAdding: false,
+        isLoading: false,
         error: action.payload,
       };
 

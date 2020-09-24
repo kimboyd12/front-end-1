@@ -13,7 +13,6 @@ import UpdatePlants from "./components/updateForms/updatePlants";
 
 import UpdateInformation from "./components/updateForms/updateInformation";
 
-
 function App() {
   const { push } = useHistory();
   const handleSignOut = () => {
@@ -33,6 +32,11 @@ function App() {
             Plants
           </Link>
         </a>
+        <a className="link item">
+          <Link className="link" to="/profile">
+            Profile
+          </Link>
+        </a>
 
         <div className="right menu">
           <div class="item">
@@ -43,17 +47,8 @@ function App() {
               </Link>
             </div>
           </div>
-          <div class="item">
-            <div class="ui button">
-              <Link className="link" to="/profile">
-                Profile
-              </Link>
-            </div>
-
-          </div>
 
           <div class="item">
-
             <div class="ui button">
               <Link className="link" to="/" onClick={handleSignOut}>
                 Logout

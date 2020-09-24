@@ -175,7 +175,7 @@ function Register(props) {
         register
       )
       .then((response) => {
-        window.localStorage.setItem("token", response.data.message);
+        window.localStorage.setItem("token", response.data.token);
         props.history.push("/login");
       })
       .catch((error) => console.log(error));

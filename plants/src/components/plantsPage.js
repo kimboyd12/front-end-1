@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
+
 import styled from "styled-components";
 import Plants from "./plants";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { addingPlant } from "../actions/plantActions";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { connect, useDispatch } from "react-redux";
+
 import { addPlant } from "../actions";
 
 const FormContainer = styled.div`
@@ -109,9 +108,6 @@ const StyledFormInput = styled.div`
 `;
 
 const PlantsPage = (props) => {
-  const { state } = props.location;
-  const { user } = useSelector((state) => state);
-
   const dispatch = useDispatch();
   const [bDisabled, setbDisabled] = useState();
   const [p, setP] = useState();
@@ -163,7 +159,7 @@ const PlantsPage = (props) => {
   const submit = (e) => {
     e.preventDefault();
 
-    dispatch(addPlant(1, plantState));
+    dispatch(addPlant(props.user.id, plantState));
   };
   //   console.log(p);
   //   console.log(output);
@@ -218,20 +214,17 @@ const PlantsPage = (props) => {
         </form>
       </StyledForm>
       <StyledOutput>
-        <p>{Plants.nickname}</p>
+        <Plants />
       </StyledOutput>
     </FormContainer>
     // need to change the JSON stringify to a list of plants
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     plants: state.plants,
-//     error: state.error
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    user: state.loginReducer.user,
+  };
+};
 
-// export default connect(mapStateToProps, { addingPlant })(PlantsPage);
-
-export default PlantsPage;
+export default connect(mapStateToProps)(PlantsPage);
