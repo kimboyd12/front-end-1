@@ -3,9 +3,10 @@ import * as yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
 import Plants from "./plants";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { addingPlant } from "../actions/plantActions";
-import axiosWithAuth from "../utils/axiosWithAuth"
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { addPlant } from "../actions";
 
 const FormContainer = styled.div`
   display: flex;
@@ -108,6 +109,11 @@ const StyledFormInput = styled.div`
 `;
 
 const PlantsPage = (props) => {
+  const { state } = props.location;
+  const { user } = useSelector((state) => state);
+  console.log(state.id);
+
+  const dispatch = useDispatch();
   const [bDisabled, setbDisabled] = useState();
   const [p, setP] = useState();
   const [errors, setErrors] = useState({
@@ -116,9 +122,9 @@ const PlantsPage = (props) => {
     h2oFrequency: "",
   });
   const [plantState, setPlantState] = useState({
-    nickname: props.nickname,
-    species: props.species,
-    h2oFrequency: props.h2oFrequency,
+    nickname: "",
+    species: "",
+    h2oFrequency: "",
   });
   const d = yup.object().shape({
     nickname: yup.string().required(),
@@ -158,14 +164,7 @@ const PlantsPage = (props) => {
   const submit = (e) => {
     e.preventDefault();
 
-    axiosWithAuth()
-      .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
-      .then((r) => {
-        setP([r.data]);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+    dispatch(addPlant(1, plantState));
   };
   //   console.log(p);
   //   console.log(output);
@@ -227,11 +226,11 @@ const PlantsPage = (props) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     plants: state.plants,
-    error: state.error
-  }
-}
+    error: state.error,
+  };
+};
 
 export default connect(mapStateToProps, { addingPlant })(PlantsPage);
