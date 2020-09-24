@@ -4,5 +4,5 @@ import { plantReducer } from "./plantReducer";
 
 export const rootReducer = combineReducers({
   loginReducer,
-  plantReducer
+  plantReducer,
 });

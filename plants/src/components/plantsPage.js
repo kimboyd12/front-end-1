@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
+
 import styled from "styled-components";
 import Plants from "./plants";
+<<<<<<< HEAD
 import { connect } from "react-redux";
 import { addingPlant } from "../actions/plantActions";
+=======
+import { connect, useDispatch } from "react-redux";
+
+import { addPlant } from "../actions";
+>>>>>>> c87f4fe333d0a07a27a462d012b070ff5f9b863e
 
 const FormContainer = styled.div`
   display: flex;
@@ -107,6 +113,7 @@ const StyledFormInput = styled.div`
 `;
 
 const PlantsPage = (props) => {
+  const dispatch = useDispatch();
   const [bDisabled, setbDisabled] = useState();
   const [p, setP] = useState();
   const [errors, setErrors] = useState({
@@ -117,7 +124,11 @@ const PlantsPage = (props) => {
   const [plantState, setPlantState] = useState({
     nickname: "",
     species: "",
+<<<<<<< HEAD
     h2oFrequency: ""
+=======
+    h2oFrequency: "",
+>>>>>>> c87f4fe333d0a07a27a462d012b070ff5f9b863e
   });
   const d = yup.object().shape({
     nickname: yup.string().required(),
@@ -157,6 +168,7 @@ const PlantsPage = (props) => {
   const submit = (e) => {
     e.preventDefault();
 
+<<<<<<< HEAD
     axios
       .post(`https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/1`, plantState)
       .then((r) => {
@@ -166,6 +178,9 @@ const PlantsPage = (props) => {
       .catch((e) => {
         console.log(e.response);
       });
+=======
+    dispatch(addPlant(props.user.id, plantState));
+>>>>>>> c87f4fe333d0a07a27a462d012b070ff5f9b863e
   };
   //   console.log(p);
   //   console.log(output);
@@ -220,18 +235,21 @@ const PlantsPage = (props) => {
         </form>
       </StyledForm>
       <StyledOutput>
+<<<<<<< HEAD
         <p></p>
+=======
+        <Plants />
+>>>>>>> c87f4fe333d0a07a27a462d012b070ff5f9b863e
       </StyledOutput>
     </FormContainer>
     // need to change the JSON stringify to a list of plants
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    plants: state.plants,
-    error: state.error
-  }
-}
+    user: state.loginReducer.user,
+  };
+};
 
-export default connect(mapStateToProps, { addingPlant })(PlantsPage);
+export default connect(mapStateToProps)(PlantsPage);
