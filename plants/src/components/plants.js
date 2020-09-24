@@ -16,18 +16,7 @@ const Plants = (props) => {
     dispatch(userPlants(props.user.id));
   }, []);
 
-<<<<<<< HEAD
-    useEffect(() => {
-        axiosWithAuth()
-            .get(`https://water-my-plants-back-end1.herokuapp.com/plants/1/plantsList`)
-            .then((r) => {
-                setPlants(r);
-                console.log(props.r.data);
-            });
-    }, []);
-=======
   console.log(props.usersPlants);
->>>>>>> c87f4fe333d0a07a27a462d012b070ff5f9b863e
 
   return (
     <div classNameName="list">
