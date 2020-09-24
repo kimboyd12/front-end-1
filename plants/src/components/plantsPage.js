@@ -116,9 +116,9 @@ const PlantsPage = (props) => {
     h2oFrequency: "",
   });
   const [plantState, setPlantState] = useState({
-    nickname: props.nickname,
-    species: props.species,
-    h2oFrequency: props.h2oFrequency,
+    nickname: "",
+    species: "",
+    h2oFrequency: "",
   });
   const d = yup.object().shape({
     nickname: yup.string().required(),
@@ -159,7 +159,7 @@ const PlantsPage = (props) => {
     e.preventDefault();
 
     axiosWithAuth()
-      .post("https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/:id", plantState)
+      .post(`https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/${plantState.id}`, plantState)
       .then((r) => {
         setP([r.data]);
       })
@@ -227,11 +227,13 @@ const PlantsPage = (props) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    plants: state.plants,
-    error: state.error
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     plants: state.plants,
+//     error: state.error
+//   }
+// }
 
-export default connect(mapStateToProps, { addingPlant })(PlantsPage);
+// export default connect(mapStateToProps, { addingPlant })(PlantsPage);
+
+export default PlantsPage;

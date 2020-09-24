@@ -7,7 +7,7 @@ import { getPlants } from "../actions/plantActions"
 import Plant from "./plantsPage";
 import axiosWithAuth from "../utils/axiosWithAuth"
 
-const Plants = props => {
+const Plants = (props) => {
 
     const [plants, setPlants] = useState();
 
@@ -16,7 +16,7 @@ const Plants = props => {
         .get('https://water-my-plants-back-end1.herokuapp.com/plants/:id/plantsList')
             .then((r) => {
                 setPlants(r);
-                console.log(props.r.data);
+                console.log(r.data);
             });
     }, []);
 
@@ -26,7 +26,7 @@ const Plants = props => {
 
     return (
         <div className="plants">
-            {props.plants.map(plant =>
+            {plants.map((plant) =>
                 <Plant
                     key={plant.id}
                     nickname={plant.nickname}
