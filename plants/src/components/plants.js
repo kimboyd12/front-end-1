@@ -2,59 +2,61 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { getPlants } from "../actions/plantActions";
 import Plant from "./plantsPage";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { userPlants } from "../actions";
+import { Link } from "react-router-dom";
 
 const Plants = (props) => {
-  const [plants, setPlants] = useState();
-  const { user } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`/plants/${user.id}/plantsList`)
-      .then((r) => {
-        setPlants(r);
-        console.log(props.r.data);
-      });
+    dispatch(userPlants(props.user.id));
   }, []);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(
-        "https://water-my-plants-back-end1.herokuapp.com/plants/:id/plantsList"
-      )
-      .then((r) => {
-        setPlants(r);
-        console.log(r.data);
-      });
-  }, []);
-
-  useEffect(() => {
-    props.getPlants();
-  }, []);
+  console.log(props.usersPlants);
 
   return (
-    <div className="plants">
-      {plants.map((plant) => (
-        <Plant
-          key={plant.id}
-          nickname={plant.nickname}
-          species={plant.species}
-          h2ofrequency={plant.h2o_frequency}
-        />
-      ))}
+    <div classNameName="list">
+      <h1>this is plants component</h1>
+
+      {props.usersPlants.length === 0 && !props.isLoading && (
+        <h2>You have no plants. Add one.</h2>
+      )}
+      {props.isLoading && <h1>Loading...</h1>}
+      {props.usersPlants.map((plant) => {
+        return (
+          <div className="ui cards">
+            <div className="card">
+              <div className="content">
+                <div className="header">{plant.Nickname}</div>
+                <div className="meta">{plant.Species}</div>
+                <div className="description">
+                  Watering Frequency: {plant.h2oFrequency}
+                </div>
+              </div>
+              <div className="extra content">
+                <div className="ui two buttons">
+                  <div className="ui basic green button">Edit</div>
+                  <div className="ui basic red button">Delete</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.isLoading,
-    plants: state.plants,
-    error: state.error,
+    user: state.loginReducer.user,
+    usersPlants: state.loginReducer.usersPlants,
+    isLoading: state.loginReducer.isLoading,
   };
 };
 
-export default connect(mapStateToProps, { getPlants })(Plants);
+export default connect(mapStateToProps)(Plants);
