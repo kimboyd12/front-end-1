@@ -7,16 +7,26 @@ import { getPlants } from "../actions/plantActions";
 import Plant from "./plantsPage";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { userPlants } from "../actions";
+import { deletePlant } from "../actions";
 import { Link } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 const Plants = (props) => {
+  const { push } = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(userPlants(props.user.id));
-  }, []);
+  }, [props.usersPlants]);
 
   console.log(props.usersPlants);
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const id = e.target.key;
+    console.log(id);
+    dispatch(deletePlant(props.user.id, id));
+    console.log(e);
+  };
 
   return (
     <div classNameName="list">
@@ -28,7 +38,7 @@ const Plants = (props) => {
       {props.isLoading && <h1>Loading...</h1>}
       {props.usersPlants.map((plant) => {
         return (
-          <div className="ui cards">
+          <div key={plant.plantID} className="ui cards">
             <div className="card">
               <div className="content">
                 <div className="header">{plant.Nickname}</div>
@@ -40,7 +50,12 @@ const Plants = (props) => {
               <div className="extra content">
                 <div className="ui two buttons">
                   <div className="ui basic green button">Edit</div>
-                  <div className="ui basic red button">Delete</div>
+                  <button
+                    onClick={handleDelete}
+                    className="ui basic red button"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
