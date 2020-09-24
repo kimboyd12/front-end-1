@@ -3,9 +3,10 @@ import * as yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
 import Plants from "./plants";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { addingPlant } from "../actions/plantActions";
-import axiosWithAuth from "../utils/axiosWithAuth"
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { addPlant } from "../actions";
 
 const FormContainer = styled.div`
   display: flex;
@@ -108,6 +109,10 @@ const StyledFormInput = styled.div`
 `;
 
 const PlantsPage = (props) => {
+  const { state } = props.location;
+  const { user } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
   const [bDisabled, setbDisabled] = useState();
   const [p, setP] = useState();
   const [errors, setErrors] = useState({
@@ -158,14 +163,7 @@ const PlantsPage = (props) => {
   const submit = (e) => {
     e.preventDefault();
 
-    axiosWithAuth()
-      .post(`https://water-my-plants-back-end1.herokuapp.com/plants/addPlant/${plantState.id}`, plantState)
-      .then((r) => {
-        setP([r.data]);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+    dispatch(addPlant(1, plantState));
   };
   //   console.log(p);
   //   console.log(output);

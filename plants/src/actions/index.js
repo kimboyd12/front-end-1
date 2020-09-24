@@ -20,15 +20,20 @@ export const USER_PLANTS_START = "USER_PLANTS_START";
 export const USER_PLANTS_SUCCESS = "USER_PLANTS_SUCCESS";
 export const USER_PLANTS_FAILURE = "USER_PLANTS_FAILURE";
 
+//Add plant...
+export const ADD_PLANT_START = "ADD_PLANT_START";
+export const ADD_PLANT_SUCCESS = "ADD_PLANT_SUCCESS";
+export const ADD_PLANT_FAILURE = "ADD_PLANT_FAILURE";
+
 export const loginUser = (credentials, props) => (dispatch) => {
   dispatch({ type: LOGIN_USER_START });
   console.log(credentials);
   axiosWithAuth()
     .post("/users/login", credentials)
     .then((res) => {
-      dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data });
+      dispatch({ type: LOGIN_USER_SUCCESS, payload: credentials });
       console.log("Login", res.data);
-      window.localStorage.setItem("token", res.data.message);
+      window.localStorage.setItem("token", res.data.token);
 
       props.history.push("/plants");
     })
@@ -73,5 +78,21 @@ export const userPlants = (userId) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: USER_PLANTS_FAILURE });
       console.log(err);
+    });
+};
+
+export const addPlant = (userId, plant) => (dispatch) => {
+  dispatch({ type: ADD_PLANT_START });
+  axiosWithAuth()
+    .post(`/plants/addPlant/${userId}`, plant)
+    .then((res) => {
+      dispatch({
+        type: ADD_PLANT_SUCCESS,
+        payload: res.data,
+      });
+      console.log(res);
+    })
+    .catch((err) => {
+      dispatch({ type: ADD_PLANT_FAILURE });
     });
 };
