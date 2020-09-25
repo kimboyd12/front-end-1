@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import * as yup from "yup";
-import axios from "axios";
+import React, { useEffect } from "react";
+
 import styled from "styled-components";
-import { connect, useSelector, useDispatch } from "react-redux";
-import { getPlants } from "../actions/plantActions";
-import Plant from "./plantsPage";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { connect, useDispatch } from "react-redux";
+
 import { userPlants } from "../actions";
 import { deletePlant } from "../actions";
-import { Link } from "react-router-dom";
+
 import { useHistory } from "react-router-dom";
 const Plants = (props) => {
   const { push } = useHistory();
@@ -20,22 +17,20 @@ const Plants = (props) => {
 
   console.log(props.usersPlants);
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    const id = e.target.key;
-    console.log(id);
-    dispatch(deletePlant(props.user.id, id));
-    console.log(e);
+  const handleDelete = (plant) => {
+    console.log(plant.plantID);
+    dispatch(deletePlant(props.user.id, plant.plantID));
+    push("/plants");
   };
 
   return (
-    <div classNameName="list">
+    <div className="list">
       <h1>this is plants component</h1>
 
       {props.usersPlants.length === 0 && !props.isLoading && (
         <h2>You have no plants. Add one.</h2>
       )}
-      {props.isLoading && <h1>Loading...</h1>}
+      {/* {props.isLoading && <h1>Loading...</h1>} */}
       {props.usersPlants.map((plant) => {
         return (
           <div key={plant.plantID} className="ui cards">
@@ -51,7 +46,7 @@ const Plants = (props) => {
                 <div className="ui two buttons">
                   <div className="ui basic green button">Edit</div>
                   <button
-                    onClick={handleDelete}
+                    onClick={() => handleDelete(plant)}
                     className="ui basic red button"
                   >
                     Delete
