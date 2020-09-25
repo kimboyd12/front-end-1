@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import {useHistory, useParams} from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const initialPlants = {
   // id:"",
@@ -26,17 +26,14 @@ const UpdatePlants = (props) => {
     });
   };
 
-
   useEffect(() => {
     axiosWithAuth()
-        .get(`https://water-my-plants-back-end1.herokuapp.com/plants/${id}`)
-        .then(res => {
-            setPlantUpdate(res.data);
-        })
-        .catch(err => console.log(err));
-}, [id]);
-
-
+      .get(`https://water-my-plants-back-end1.herokuapp.com/plants/${id}`)
+      .then((res) => {
+        setPlantUpdate(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -47,7 +44,7 @@ const UpdatePlants = (props) => {
       )
       .then((response) => {
         console.log(response);
-        props.setPlantUpdate(response.data);
+        setPlantUpdate(response.data);
         push(`plants/${id}`);
       })
       .catch((error) => {
