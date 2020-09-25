@@ -34,17 +34,24 @@ button {
   margin: 0.5rem;
 }
 `;
+
+  document.onload = console.log("Profile Lodaded")
   return (
-    <Container>
+
+    <Container >
       <h1>Profile Page</h1>
       <StyledDiv>
+
         <img
           src="https://raw.githubusercontent.com/Build-Week-PT-Water-My-Plants/marketing-page/layout-2nd-page-greg-roberts/images/team/Gabriellia%20Venegas-Johnson.png"
           alt="Gabriellia Venegas-Johnson"
         />
-        <p id="info">Username: Gabby Venegas</p>
-        <p id="info">Phone Number: 555-555-5555</p>
+        <p id="info" >Username: Gabby Venegas</p>
+        <p id="info" >Phone Number: 555-555-5555</p>
         <p>Favorite Plants: Cactus</p>
+        <input type="button" value="PLAY" onclick="play()" />
+
+        <audio id="audio" src="sf_watering-can_06.mp3"></audio>
         <Link to="/plantlist">
           <button>View Your Plants</button>
         </Link>
@@ -54,7 +61,8 @@ button {
         <Link to="/updateaccount">
           <button>Update Your Profile</button>
         </Link>
-      </StyledDiv>
-    </Container>
+      </StyledDiv >
+    </Container >
+
   );
 }
