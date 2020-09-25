@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 const Profile = (props) => {
-
   const Container = styled.div`
     display: flex;
     justify-content: center;
@@ -35,19 +34,15 @@ const Profile = (props) => {
     }
   `;
 
-
- 
-
   document.onload = console.log("Profile Lodaded");
   return (
-  
     <Container>
       <h1>Profile Page</h1>
       <StyledDiv>
         <p id="info">Username: {props.user.username}</p>
         <p id="info">Phone Number: {props.user.phoneNumber}</p>
-       
-        <Link to="/plantlist">
+
+        <Link to="/plantslist">
           <button>View Your Plants</button>
         </Link>
         <Link to="/plants">
@@ -58,7 +53,7 @@ const Profile = (props) => {
         </Link>
       </StyledDiv>
     </Container>
-  )
+  );
 };
 
 const mapStateToProps = (state) => {

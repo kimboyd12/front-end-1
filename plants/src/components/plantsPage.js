@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 
 import styled from "styled-components";
-import Plants from "./plants";
+
 import { connect, useDispatch } from "react-redux";
 
 import { addPlant } from "../actions";
+import { useHistory } from "react-router-dom";
 
 const FormContainer = styled.div`
   display: flex;
@@ -96,8 +97,9 @@ const StyledFormInput = styled.div`
 
 const PlantsPage = (props) => {
   const dispatch = useDispatch();
+  const { push } = useHistory();
   const [bDisabled, setbDisabled] = useState();
-  const [p, setP] = useState();
+
   const [errors, setErrors] = useState({
     nickname: "",
     species: "",
@@ -147,6 +149,7 @@ const PlantsPage = (props) => {
     e.preventDefault();
 
     dispatch(addPlant(props.user.id, plantState));
+    push("/plantslist");
   };
   //   console.log(p);
   //   console.log(output);
@@ -200,9 +203,7 @@ const PlantsPage = (props) => {
           </StyledFormInput>
         </form>
       </StyledForm>
-      <StyledOutput>
-        <Plants />
-      </StyledOutput>
+      <StyledOutput></StyledOutput>
     </FormContainer>
     // need to change the JSON stringify to a list of plants
   );
