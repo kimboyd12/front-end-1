@@ -7,6 +7,13 @@ import { userPlants } from "../actions";
 import { deletePlant } from "../actions";
 
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 0.3rem;
+  flex-wrap: wrap;
+`;
 const Plants = (props) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
@@ -30,33 +37,38 @@ const Plants = (props) => {
       {props.usersPlants.length === 0 && !props.isLoading && (
         <h2>You have no plants. Add one.</h2>
       )}
+
       {/* {props.isLoading && <h1>Loading...</h1>} */}
-      {props.usersPlants.map((plant) => {
-        return (
-          <div key={plant.plantID} className="ui cards">
-            <div className="card">
-              <div className="content">
-                <div className="header">{plant.Nickname}</div>
-                <div className="meta">{plant.Species}</div>
-                <div className="description">
-                  Watering Frequency: {plant.h2oFrequency}
+      <StyledDiv>
+        {props.usersPlants.map((plant) => {
+          return (
+            <StyledDiv>
+              <div className="ui cards">
+                <div className="card">
+                  <div className="content">
+                    <div className="header">{plant.Nickname}</div>
+                    <div className="meta">{plant.Species}</div>
+                    <div className="description">
+                      Watering Frequency: {plant.h2oFrequency}
+                    </div>
+                  </div>
+                  <div className="extra content">
+                    <div className="ui two buttons">
+                      <div className="ui basic green button">Edit</div>
+                      <button
+                        onClick={() => handleDelete(plant)}
+                        className="ui basic red button"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="extra content">
-                <div className="ui two buttons">
-                  <div className="ui basic green button">Edit</div>
-                  <button
-                    onClick={() => handleDelete(plant)}
-                    className="ui basic red button"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+            </StyledDiv>
+          );
+        })}
+      </StyledDiv>
     </div>
   );
 };
