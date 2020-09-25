@@ -26,7 +26,7 @@ const Plants = (props) => {
 
   const updatePlant = (plant) => {
     console.log(plant);
-    push("updateplant/plant/:id");
+    push(`updateplant/plant/${plant.plantID}`);
   };
 
   const handleDelete = (plant) => {
@@ -61,9 +61,9 @@ const Plants = (props) => {
                     <div className="ui two buttons">
                       <div
                         className="ui basic green button"
-                        onClick={() => updatePlant(plant.plantID)}
+                        onClick={() => updatePlant(plant)}
                       >
-                        {/* <Link to="/updateplant/plant/:id">Edit</Link> */}
+                        Edit
                       </div>
                       <button
                         onClick={() => handleDelete(plant)}
