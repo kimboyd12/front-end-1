@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 
 import { userPlants } from "../actions";
+
+import { Link, useHistory } from "react-router-dom";
+
 import { deletePlant } from "../actions";
+
 
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -18,16 +22,26 @@ const Plants = (props) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
 
+
+
+  const { push } = useHistory();
+
   useEffect(() => {
     dispatch(userPlants(props.user.id));
   }, [props.usersPlants]);
 
   console.log(props.usersPlants);
 
+
+  const updatePlant = (plant) => {
+      console.log(plant)
+    push("updateplant/plant/:id");
+
   const handleDelete = (plant) => {
     console.log(plant.plantID);
     dispatch(deletePlant(props.user.id, plant.plantID));
     push("/plants");
+
   };
 
   return (
@@ -37,6 +51,7 @@ const Plants = (props) => {
       {props.usersPlants.length === 0 && !props.isLoading && (
         <h2>You have no plants. Add one.</h2>
       )}
+
 
       {/* {props.isLoading && <h1>Loading...</h1>} */}
       <StyledDiv>
@@ -54,7 +69,10 @@ const Plants = (props) => {
                   </div>
                   <div className="extra content">
                     <div className="ui two buttons">
-                      <div className="ui basic green button">Edit</div>
+                       <div className="ui basic green button" onClick={() => updatePlant(plant.plantID)}>
+                    {/* <Link to="/updateplant/plant/:id">Edit</Link> */}
+                    
+                  </div>
                       <button
                         onClick={() => handleDelete(plant)}
                         className="ui basic red button"
@@ -63,6 +81,7 @@ const Plants = (props) => {
                       </button>
                     </div>
                   </div>
+
                 </div>
               </div>
             </StyledDiv>
