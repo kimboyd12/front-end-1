@@ -14,23 +14,19 @@ const FormContainer = styled.div`
   align-items: center;
   width: 100%;
   text-decoration: none;
-
   p {
     color: #c6d7dd;
     margin-top: 2%;
     font-size: 1rem;
     font-family: "Quicksand", sans-serif;
   }
-
   .link {
     text-decoration: none;
     color: blue;
-
     &:hover {
       color: black;
     }
   }
-
   .errors {
     font-size: 1.5rem;
     font-family: "Quicksand", sans-serif;
@@ -43,12 +39,9 @@ const StyledForm = styled.div`
   border-radius: 2rem;
   box-shadow: 0 4rem 8rem 0 rgba(0, 0, 0, 0.2),
     0 6rem 20rem 0 rgba(0, 0, 0, 0.19);
-
   display: flex;
   flex-direction: row;
-
   align-items: center;
-
   form {
     width: 100%;
   }
@@ -68,14 +61,11 @@ const StyledFormInput = styled.div`
   flex-direction: row;
   font-size: 62.5%;
   width: 100%;
-
   h2 {
     text-align: center;
     font-size: 1.7rem;
-
     font-family: "Quicksand", sans-serif;
   }
-
   label {
     width: 95%;
     text-align: center;
@@ -83,7 +73,6 @@ const StyledFormInput = styled.div`
     font-size: 1.2rem;
     font-family: "Quicksand", sans-serif;
   }
-
   input {
     width: 100%;
     padding: 1rem 1rem;
@@ -92,12 +81,10 @@ const StyledFormInput = styled.div`
     border-radius: 0.5rem;
     box-sizing: border-box;
   }
-
   button {
     width: 95%;
     background-color: #2b85a2;
     color: white;
-
     margin: 3.2% 0% 0% 2%;
     border: none;
     border-radius: 0.5rem;
