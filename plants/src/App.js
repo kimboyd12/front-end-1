@@ -8,7 +8,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Plants from "./components/plantsPage";
 import Profile from "./components/Profile";
 // import PlantPage from "./components/plantsPage";
-// import UpdatePlants from "./components/updateForms/updatePlants";
+
 import UpdatePlants from "./components/updateForms/updatePlants";
 
 import UpdateInformation from "./components/updateForms/updateInformation";
@@ -66,7 +66,7 @@ function App() {
 
       <PrivateRoute exact path="/plantsPage" component={Plants} />
 
-      <PrivateRoute exact path="/plants/:id" component={UpdatePlants} />
+      <PrivateRoute exact path="/updateplant/plant/:id" component={UpdatePlants} />
 
       <PrivateRoute exact path="/updateaccount" component={UpdateInformation} />
     </div>

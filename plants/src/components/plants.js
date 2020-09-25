@@ -7,16 +7,25 @@ import { getPlants } from "../actions/plantActions";
 import Plant from "./plantsPage";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { userPlants } from "../actions";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Plants = (props) => {
   const dispatch = useDispatch();
+
+
+
+  const { push } = useHistory();
 
   useEffect(() => {
     dispatch(userPlants(props.user.id));
   }, []);
 
   console.log(props.usersPlants);
+
+  const updatePlant = (plant) => {
+      console.log(plant)
+    push("updateplant/plant/:id");
+  };
 
   return (
     <div classNameName="list">
@@ -39,7 +48,10 @@ const Plants = (props) => {
               </div>
               <div className="extra content">
                 <div className="ui two buttons">
-                  <div className="ui basic green button">Edit</div>
+                  <div className="ui basic green button" onClick={() => updatePlant(plant.plantID)}>
+                    {/* <Link to="/updateplant/plant/:id">Edit</Link> */}
+                    
+                  </div>
                   <div className="ui basic red button">Delete</div>
                 </div>
               </div>

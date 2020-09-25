@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import {useHistory, useParams} from "react-router-dom";
 
 const initialPlants = {
+  // id:"",
   nickname: "",
   species: "",
   h2oFrequency: "",
 };
 
 const UpdatePlants = (props) => {
-  const { id } = props.match.params;
+  // const { id } = props.match.params;
+
   const [plantUpdate, setPlantUpdate] = useState(initialPlants);
+
+  const { push } = useHistory();
+
+  const { id } = useParams();
 
   const handleChanges = (e) => {
     setPlantUpdate({
@@ -17,6 +25,18 @@ const UpdatePlants = (props) => {
       [e.target.name]: e.target.value,
     });
   };
+
+
+  useEffect(() => {
+    axiosWithAuth()
+        .get(`https://water-my-plants-back-end1.herokuapp.com/plants/${id}`)
+        .then(res => {
+            setPlantUpdate(res.data);
+        })
+        .catch(err => console.log(err));
+}, [id]);
+
+
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -26,8 +46,9 @@ const UpdatePlants = (props) => {
         plantUpdate
       )
       .then((response) => {
+        console.log(response);
         props.setPlantUpdate(response.data);
-        props.history.push(`protected`);
+        push(`plants/${id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +57,7 @@ const UpdatePlants = (props) => {
 
   return (
     <div>
-      <h3>Update your PlantS</h3>
+      <h3>Update your Plants</h3>
       <form onSubmit={handleUpdate}>
         <label htmlFor="nickname">
           {" "}
