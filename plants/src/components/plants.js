@@ -37,8 +37,6 @@ const Plants = (props) => {
 
   return (
     <div className="list">
-      <h1>this is plants component</h1>
-
       {props.usersPlants.length === 0 && !props.isLoading && (
         <h2>You have no plants. Add one.</h2>
       )}

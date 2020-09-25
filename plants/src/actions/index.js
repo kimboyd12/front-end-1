@@ -86,9 +86,10 @@ export const userPlants = (userId) => (dispatch) => {
 };
 
 export const addPlant = (userId, plant) => (dispatch) => {
+  const id = localStorage.getItem("id");
   dispatch({ type: ADD_PLANT_START });
   axiosWithAuth()
-    .post(`/plants/addPlant/${userId}`, plant)
+    .post(`/plants/addPlant/${id}`, plant)
     .then((res) => {
       dispatch({
         type: ADD_PLANT_SUCCESS,
