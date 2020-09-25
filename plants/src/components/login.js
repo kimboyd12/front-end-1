@@ -137,6 +137,12 @@ const Login = (props) => {
   };
 
   return (
+    // <div className="ui equal width center aligned padded grid">
+    //   <div className="row">
+    //     <div className="column" style={{ backgroundColor: "#a0d6b4" }}>
+    //       I'm The New Div
+    //     </div>
+    //     <div className="column">
     <FormContainer>
       <StyledForm>
         <form>
@@ -181,6 +187,9 @@ const Login = (props) => {
         </Link>
       </p>
     </FormContainer>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
