@@ -5,9 +5,9 @@ import { Route, Switch, Link, useHistory } from "react-router-dom";
 import "./App.css";
 import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
-import Plants from "./components/plantsPage";
+import PlantsPage from "./components/plantsPage";
 import Profile from "./components/Profile";
-// import PlantPage from "./components/plantsPage";
+import Plants from "./components/plants";
 
 import UpdatePlants from "./components/updateForms/updatePlants";
 
@@ -31,11 +31,11 @@ function App() {
             Home
           </Link>
         </a>
-        <a className="link item">
+        {/* <a className="link item">
           <Link className="link" to="/plants">
             Plants
           </Link>
-        </a>
+        </a> */}
         <a className="link item">
           <Link className="link" to="/profile">
             Profile
@@ -66,9 +66,9 @@ function App() {
       <Route path="/signup" component={Register} />
 
       <PrivateRoute exact path="/profile" component={Profile} />
-      <PrivateRoute exact path="/plants" component={Plants} />
+      <PrivateRoute exact path="/plantlist" component={PlantsPage} />
 
-      <PrivateRoute exact path="/plantsPage" component={Plants} />
+      <PrivateRoute exact path="/plants" component={Plants} />
 
       <PrivateRoute
         exact
