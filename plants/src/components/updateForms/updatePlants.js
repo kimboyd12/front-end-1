@@ -45,7 +45,9 @@ const UpdatePlants = (props) => {
       .then((response) => {
         console.log(response);
         setPlantUpdate(response.data);
-        push(`plants/${id}`);
+
+        push("/plants");
+        // push(`plants/${id}`);
       })
       .catch((error) => {
         console.log(error);
