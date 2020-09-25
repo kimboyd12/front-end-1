@@ -37,15 +37,16 @@ const Profile = (props) => {
   document.onload = console.log("Profile Lodaded");
   return (
     <Container>
-      <h1>Profile Page</h1>
       <StyledDiv>
+      <h1>Welcome back.</h1>
+      <p>What would you like to do today?</p>
         <p id="info">Username: {props.user.username}</p>
         <p id="info">Phone Number: {props.user.phoneNumber}</p>
 
         <Link to="/plantslist">
           <button>View Your Plants</button>
         </Link>
-        <Link to="/plants">
+        <Link to="/plantlist">
           <button>Add Plants</button>
         </Link>
         <Link to="/updateaccount">

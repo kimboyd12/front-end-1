@@ -42,7 +42,7 @@ export const loginUser = (credentials, props) => (dispatch) => {
       localStorage.setItem("id", res.data.user.id);
       localStorage.setItem("username", res.data.user.username);
 
-      props.history.push("/plants");
+      props.history.push("/profile");
     })
     .catch((err) => {
       dispatch({ type: LOGIN_USER_FAILURE });
@@ -101,6 +101,7 @@ export const addPlant = (userId, plant) => (dispatch) => {
         payload: res.data,
       });
       console.log(res);
+     
     })
     .catch((err) => {
       dispatch({ type: ADD_PLANT_FAILURE });
