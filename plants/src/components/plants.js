@@ -8,7 +8,12 @@ import Plant from "./plantsPage";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { userPlants } from "../actions";
 import { Link } from "react-router-dom";
-
+const StyledDiv = styled.div`
+display: flex;
+flex-direction: row;
+margin: 0.3rem;
+flex-wrap: wrap;
+`;
 const Plants = (props) => {
   const dispatch = useDispatch();
 
@@ -26,27 +31,34 @@ const Plants = (props) => {
         <h2>You have no plants. Add one.</h2>
       )}
       {props.isLoading && <h1>Loading...</h1>}
-      {props.usersPlants.map((plant) => {
-        return (
-          <div className="ui cards">
-            <div className="card">
-              <div className="content">
-                <div className="header">{plant.Nickname}</div>
-                <div className="meta">{plant.Species}</div>
-                <div className="description">
-                  Watering Frequency: {plant.h2oFrequency}
+      <StyledDiv>
+        {props.usersPlants.map((plant) => {
+          return (
+            <StyledDiv>
+              <div className="ui cards">
+                <div className="card">
+
+                  <div className="content">
+                    <div className="header">{plant.Nickname}</div>
+                    <div className="meta">{plant.Species}</div>
+                    <div className="description">
+                      Watering Frequency: {plant.h2oFrequency}
+                    </div>
+                  </div>
+                  <div className="extra content">
+                    <div className="ui two buttons">
+                      <div className="ui basic green button">Edit</div>
+                      <div className="ui basic red button">Delete</div>
+                    </div>
+                  </div>
+
                 </div>
+
               </div>
-              <div className="extra content">
-                <div className="ui two buttons">
-                  <div className="ui basic green button">Edit</div>
-                  <div className="ui basic red button">Delete</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+            </StyledDiv>
+          );
+        })}
+      </StyledDiv>
     </div>
   );
 };
