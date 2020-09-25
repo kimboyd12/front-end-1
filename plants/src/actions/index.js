@@ -34,6 +34,8 @@ export const loginUser = (credentials, props) => (dispatch) => {
       dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data.user });
       console.log("Login", res.data);
       window.localStorage.setItem("token", res.data.token);
+      localStorage.setItem("id", res.data.user.id);
+      localStorage.setItem("username", res.data.user.username);
 
       props.history.push("/plants");
     })
@@ -68,9 +70,11 @@ export const deletePlant = (userId, id) => (dispatch) => {
 };
 
 export const userPlants = (userId) => (dispatch) => {
+  const id = localStorage.getItem("id");
   dispatch({ type: USER_PLANTS_START });
+
   axiosWithAuth()
-    .get(`/plants/${userId}/plantsList/`)
+    .get(`/plants/${id}/plantsList/`)
     .then((res) => {
       dispatch({ type: USER_PLANTS_SUCCESS, payload: res.data });
       console.log(res.data);
