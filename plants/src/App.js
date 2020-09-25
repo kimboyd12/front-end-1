@@ -7,11 +7,13 @@ import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
 import Plants from "./components/plantsPage";
 import Profile from "./components/Profile";
+
 // import PlantPage from "./components/plantsPage";
 
 import UpdatePlants from "./components/updateForms/updatePlants";
 
 import UpdateInformation from "./components/updateForms/updateInformation";
+import PlantsList from "./components/PlantsList";
 
 function App() {
   const { push } = useHistory();
@@ -61,14 +63,15 @@ function App() {
           </div>
         </div>
       </div>
-
       <Route exact path="/" component={Login} />
+
       <Route path="/signup" component={Register} />
 
       <PrivateRoute exact path="/profile" component={Profile} />
       <PrivateRoute exact path="/plants" component={Plants} />
 
       <PrivateRoute exact path="/plantsPage" component={Plants} />
+      <PrivateRoute exact path="/plantslist" component={PlantsList} />
 
       <PrivateRoute
         exact
