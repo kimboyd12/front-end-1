@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import { connect } from "react-redux";
+import { updateProfile } from "../../actions/index"
 
-const initialProfile = {
-  password: "",
-  phoneNumber: "",
-};
+// const initialProfile = {
+//   password: "",
+//   phoneNumber: "",
+// };
 
-const UpdatePlants = (props) => {
-  const { id } = props.match.params;
-  const [profileUpdate, setProfileUpdate] = useState(initialProfile);
+const UpdateProfile = (props) => {
+
+  // const { id } = props.match.params;
+  const [profileUpdate, setProfileUpdate] = useState({
+    password: "",
+    phoneNumber:"",
+  });
 
   const handleChanges = (e) => {
     setProfileUpdate({
@@ -17,21 +23,27 @@ const UpdatePlants = (props) => {
     });
   };
 
+
   const handleUpdate = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .put(
-        `https://water-my-plants-back-end1.herokuapp.com/users/${id}`,
-        profileUpdate
-      )
-      .then((response) => {
-        props.setProfileUpdate(response.data);
-        props.history.push(`protected`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    props.updateProfile(profileUpdate);
+  }
+
+  // const handleUpdate = (e) => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .put(
+  //       `https://water-my-plants-back-end1.herokuapp.com/users/:id`,
+  //       profileUpdate
+  //     )
+  //     .then((response) => {
+  //       props.setProfileUpdate(response.data);
+  //       props.history.push(`/plants`);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div>
@@ -60,4 +72,11 @@ const UpdatePlants = (props) => {
   );
 };
 
-export default UpdatePlants;
+const mapStateToProps = state => {
+  return {
+      profileUpdate: state.profileUpdate,
+      error: state.error
+  }
+}
+
+export default connect(mapStateToProps, {updateProfile})(UpdateProfile);

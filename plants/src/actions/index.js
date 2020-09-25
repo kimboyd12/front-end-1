@@ -25,6 +25,12 @@ export const ADD_PLANT_START = "ADD_PLANT_START";
 export const ADD_PLANT_SUCCESS = "ADD_PLANT_SUCCESS";
 export const ADD_PLANT_FAILURE = "ADD_PLANT_FAILURE";
 
+
+//Change Profile..
+export const CHANGE_INFO_START = "CHANGE_INFO_START"
+export const CHANGE_INFO_SUCCESS = "CHANGE_INFO_SUCCESS"
+export const CHANGE_INFO_FAILED = "CHANGE_INFO_FAILED"
+
 export const loginUser = (credentials, props) => (dispatch) => {
   dispatch({ type: LOGIN_USER_START });
   console.log("User", credentials);
@@ -99,5 +105,20 @@ export const addPlant = (userId, plant) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: ADD_PLANT_FAILURE });
+    });
+};
+
+
+export const updateProfile = (changeInfo) => (dispatch) => {
+  dispatch({ type: CHANGE_INFO_START });
+  axiosWithAuth()
+    .put(`users/${changeInfo.id}`, changeInfo)
+    .then((response) => {
+      console.log(response.data);
+      dispatch({ type: CHANGE_INFO_SUCCESS, payload: response.data });
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch({ type: CHANGE_INFO_FAILED });
     });
 };
