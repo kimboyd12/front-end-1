@@ -114,24 +114,31 @@ export const loginReducer = (state = initialState, action) => {
         error: action.payload,
       };
 
-      case CHANGE_INFO_START:
-        return{
-          ...state,
-          isUpdating: true,
-        }
-        case CHANGE_INFO_SUCCESS:
-        return {
-          ...state,
-          isUpdating: false,
-          updateProfile: action.payload,
-          error: " ",
-        };
-      case CHANGE_INFO_FAILED:
-        return {
-          ...state,
-          isUpdating: false,
-          error: action.payload,
-        };
+    case CHANGE_INFO_START:
+      return {
+        ...state,
+        isUpdating: true,
+      };
+    case CHANGE_INFO_SUCCESS:
+      const id = localStorage.getItem("id");
+      const username = localStorage.getItem("username");
+      return {
+        ...state,
+        isUpdating: false,
+        user: {
+          id: id,
+          username: username,
+          password: action.payload.password,
+          phoneNumber: action.payload.phoneNumber,
+        },
+        error: " ",
+      };
+    case CHANGE_INFO_FAILED:
+      return {
+        ...state,
+        isUpdating: false,
+        error: action.payload,
+      };
 
     default:
       return state;
