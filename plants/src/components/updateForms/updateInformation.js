@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import { connect } from "react-redux";
-import { updateProfile } from "../../actions/index"
+import { updateProfile } from "../../actions/index";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // const initialProfile = {
 //   password: "",
@@ -9,11 +11,13 @@ import { updateProfile } from "../../actions/index"
 // };
 
 const UpdateProfile = (props) => {
+  const { push } = useHistory();
+  const dispatch = useDispatch();
 
   // const { id } = props.match.params;
   const [profileUpdate, setProfileUpdate] = useState({
     password: "",
-    phoneNumber:"",
+    phoneNumber: "",
   });
 
   const handleChanges = (e) => {
@@ -23,11 +27,11 @@ const UpdateProfile = (props) => {
     });
   };
 
-
   const handleUpdate = (e) => {
     e.preventDefault();
-    props.updateProfile(profileUpdate);
-  }
+    dispatch(updateProfile(profileUpdate));
+    push("/profile");
+  };
 
   // const handleUpdate = (e) => {
   //   e.preventDefault();
@@ -72,11 +76,11 @@ const UpdateProfile = (props) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-      profileUpdate: state.profileUpdate,
-      error: state.error
-  }
-}
+    profileUpdate: state.profileUpdate,
+    error: state.error,
+  };
+};
 
-export default connect(mapStateToProps, {updateProfile})(UpdateProfile);
+export default connect(mapStateToProps, { updateProfile })(UpdateProfile);
