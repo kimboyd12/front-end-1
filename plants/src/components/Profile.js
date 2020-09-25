@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 const Profile = (props) => {
+
   const Container = styled.div`
     display: flex;
     justify-content: center;
@@ -34,21 +35,18 @@ const Profile = (props) => {
     }
   `;
 
+
+ 
+
   document.onload = console.log("Profile Lodaded");
   return (
+  
     <Container>
       <h1>Profile Page</h1>
       <StyledDiv>
-        <img
-          src="https://raw.githubusercontent.com/Build-Week-PT-Water-My-Plants/marketing-page/layout-2nd-page-greg-roberts/images/team/Gabriellia%20Venegas-Johnson.png"
-          alt="Gabriellia Venegas-Johnson"
-        />
         <p id="info">Username: {props.user.username}</p>
         <p id="info">Phone Number: {props.user.phoneNumber}</p>
-        <p>Favorite Plants: Cactus</p>
-        <input type="button" value="PLAY" onclick="play()" />
-
-        <audio id="audio" src="sf_watering-can_06.mp3"></audio>
+       
         <Link to="/plantlist">
           <button>View Your Plants</button>
         </Link>
@@ -60,7 +58,7 @@ const Profile = (props) => {
         </Link>
       </StyledDiv>
     </Container>
-  );
+  )
 };
 
 const mapStateToProps = (state) => {

@@ -14,6 +14,9 @@ import {
   ADD_PLANT_START,
   ADD_PLANT_SUCCESS,
   ADD_PLANT_FAILURE,
+  CHANGE_INFO_START,
+  CHANGE_INFO_SUCCESS,
+  CHANGE_INFO_FAILED,
 } from "../actions";
 
 export const initialState = {
@@ -38,6 +41,7 @@ export const initialState = {
   isLoggingIn: false,
   isLoggingOut: false,
   isLoadinging: false,
+  isUpdating: false,
   usersPlants: [],
 };
 
@@ -109,6 +113,25 @@ export const loginReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
+
+      case CHANGE_INFO_START:
+        return{
+          ...state,
+          isUpdating: true,
+        }
+        case CHANGE_INFO_SUCCESS:
+        return {
+          ...state,
+          isUpdating: false,
+          updateProfile: action.payload,
+          error: " ",
+        };
+      case CHANGE_INFO_FAILED:
+        return {
+          ...state,
+          isUpdating: false,
+          error: action.payload,
+        };
 
     default:
       return state;
