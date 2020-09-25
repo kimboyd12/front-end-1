@@ -9,6 +9,7 @@ import { updateProfile } from "../../actions/index"
 // };
 
 const UpdateProfile = (props) => {
+
   // const { id } = props.match.params;
   const [profileUpdate, setProfileUpdate] = useState({
     password: "",
