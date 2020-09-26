@@ -7,7 +7,6 @@ import { userPlants } from "../actions";
 import { deletePlant } from "../actions";
 
 import { useHistory } from "react-router-dom";
-import faker from "faker";
 
 const StyledTitle = styled.div`
   h1 {
