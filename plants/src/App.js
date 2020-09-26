@@ -23,7 +23,7 @@ function App() {
   };
   return (
     <div className="App">
-      <div className="ui  menu">
+      <div className="ui  menu" style={{ margin: "0" }}>
         <a className="item link">
           <Link
             className="link"
@@ -33,11 +33,11 @@ function App() {
             Home
           </Link>
         </a>
-        {/* <a className="link item">
-          <Link className="link" to="/plants">
-            Plants
+        <a className="link item">
+          <Link className="link" to="/addplant">
+            Add New Plant
           </Link>
-        </a> */}
+        </a>
         <a className="link item">
           <Link className="link" to="/profile">
             Profile
@@ -46,7 +46,10 @@ function App() {
 
         <div className="right menu">
           <div class="item">
-            <div class="ui primary button">
+            <div
+              class="ui green button"
+              style={{ backgroundColor: "#a0d6b4 " }}
+            >
               {" "}
               <Link className="link" to="/">
                 Login
@@ -68,7 +71,7 @@ function App() {
       <Route path="/signup" component={Register} />
 
       <PrivateRoute exact path="/profile" component={Profile} />
-      <PrivateRoute exact path="/plantlist" component={PlantsPage} />
+      <PrivateRoute exact path="/addplant" component={PlantsPage} />
 
       {/* <PrivateRoute exact path="/plantsPage" component={Plants} /> */}
       <PrivateRoute exact path="/plantslist" component={PlantsList} />

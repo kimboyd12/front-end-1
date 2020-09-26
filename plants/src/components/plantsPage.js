@@ -8,6 +8,16 @@ import { connect, useDispatch } from "react-redux";
 import { addPlant } from "../actions";
 import { useHistory } from "react-router-dom";
 
+const StyledPage = styled.div`
+  background: radial-gradient(
+    circle,
+    rgba(160, 214, 180, 1) 9%,
+    rgba(255, 255, 255, 1) 100%
+  );
+
+  height: 100vh;
+`;
+
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -59,7 +69,7 @@ const StyledOutput = styled.div`
 
 const StyledFormInput = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 62.5%;
   width: 100%;
   h2 {
@@ -155,56 +165,58 @@ const PlantsPage = (props) => {
   //   console.log(output);
   // console.log(Plants.nickname)
   return (
-    <FormContainer>
-      <StyledForm>
-        <form onSubmit={submit}>
-          <StyledFormInput>
-            <label htmlFor="nickname">
-              {" "}
-              <h2>Nickname</h2>
-              <input
-                id="nickname"
-                type="text"
-                name="nickname"
-                value={plantState.nickname}
-                onChange={change}
-              />
-              {errors.nickname.length > 0 ? <p>{errors.nickname}</p> : null}
-            </label>
-            <label htmlFor="species">
-              {" "}
-              <h2>Species</h2>
-              <input
-                id="species"
-                type="text"
-                name="species"
-                value={plantState.species}
-                onChange={change}
-              />
-              {errors.species.length > 0 ? <p>{errors.species}</p> : null}{" "}
-            </label>
-            <label htmlFor="h2oFrequency">
-              {" "}
-              <h2> Watering Amt</h2>
-              <input
-                id="h2oFrequency"
-                type="text"
-                name="h2oFrequency"
-                value={plantState.h2oFrequency}
-                onChange={change}
-              />
-              {errors.h2oFrequency.length > 0 ? (
-                <p>{errors.h2oFrequency}</p>
-              ) : null}
-            </label>
-            <button disabled={bDisabled} type="submit">
-              <h2>{bDisabled ? "Enter More Data" : "Submit"}</h2>
-            </button>
-          </StyledFormInput>
-        </form>
-      </StyledForm>
-      <StyledOutput></StyledOutput>
-    </FormContainer>
+    <StyledPage>
+      <FormContainer>
+        <StyledForm>
+          <form onSubmit={submit}>
+            <StyledFormInput>
+              <label htmlFor="nickname">
+                {" "}
+                <h2>Nickname</h2>
+                <input
+                  id="nickname"
+                  type="text"
+                  name="nickname"
+                  value={plantState.nickname}
+                  onChange={change}
+                />
+                {errors.nickname.length > 0 ? <p>{errors.nickname}</p> : null}
+              </label>
+              <label htmlFor="species">
+                {" "}
+                <h2>Species</h2>
+                <input
+                  id="species"
+                  type="text"
+                  name="species"
+                  value={plantState.species}
+                  onChange={change}
+                />
+                {errors.species.length > 0 ? <p>{errors.species}</p> : null}{" "}
+              </label>
+              <label htmlFor="h2oFrequency">
+                {" "}
+                <h2> Watering Amt</h2>
+                <input
+                  id="h2oFrequency"
+                  type="text"
+                  name="h2oFrequency"
+                  value={plantState.h2oFrequency}
+                  onChange={change}
+                />
+                {errors.h2oFrequency.length > 0 ? (
+                  <p>{errors.h2oFrequency}</p>
+                ) : null}
+              </label>
+              <button disabled={bDisabled} type="submit">
+                <h2>{bDisabled ? "Enter More Data" : "Submit"}</h2>
+              </button>
+            </StyledFormInput>
+          </form>
+        </StyledForm>
+        <StyledOutput></StyledOutput>
+      </FormContainer>
+    </StyledPage>
     // need to change the JSON stringify to a list of plants
   );
 };

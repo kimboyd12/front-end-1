@@ -3,9 +3,26 @@ import { useDispatch } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { loginUser } from "../actions";
 import { registerSchema } from "./loginSchema";
+import "./login.css";
 
 import styled from "styled-components";
+import logo from "./Logo.png";
 
+const PageContainer = styled.div`
+  text-align: center;
+
+  p {
+    font-family: "Raleway", sans-serif;
+    font-size: 2rem;
+    margin: 5%;
+  }
+  img {
+    margin-top: 25%;
+  }
+  .middle .aligned .row {
+    height: 100%;
+  }
+`;
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -23,7 +40,7 @@ const FormContainer = styled.div`
 
   .link {
     text-decoration: none;
-    color: blue;
+    color: #49796b;
 
     &:hover {
       color: black;
@@ -37,7 +54,7 @@ const FormContainer = styled.div`
 `;
 const StyledForm = styled.div`
   background-color: #e5ebed;
-  width: 25%;
+  width: 40%;
   height: auto;
   padding: 2%;
   margin-top: 10%;
@@ -92,7 +109,7 @@ const StyledFormInput = styled.div`
 
   button {
     width: 95%;
-    background-color: #2b85a2;
+    background-color: #a0d6b4;
     color: white;
     padding: 20px 20px;
     margin: 2%;
@@ -137,59 +154,82 @@ const Login = (props) => {
   };
 
   return (
-    // <div className="ui equal width center aligned padded grid">
-    //   <div className="row">
-    //     <div className="column" style={{ backgroundColor: "#a0d6b4" }}>
-    //       I'm The New Div
-    //     </div>
-    //     <div className="column">
-    <FormContainer>
-      <StyledForm>
-        <form>
-          <StyledFormInput>
-            <h2>Log In to Your Account</h2>
-            <label htmlFor="email">Username:&nbsp;</label>
-            <input
-              id="username"
-              name="username"
-              type="username"
-              data-cy="input-username"
-              onChange={handleChange}
-              value={formValues.username}
-            />
+    <PageContainer>
+      <div
+        className="ui equal width center aligned padded grid"
+        style={{ height: "100vh", padding: "0", margin: "0" }}
+      >
+        <div
+          className=" middle aligned row"
+          style={{ padding: "0", margin: "0" }}
+        >
+          <div
+            className="  middle center aligned column"
+            style={{
+              backgroundColor: "#a0d6b4",
+              background:
+                "linear-gradient(180deg, rgba(160,214,180,1) 9%, rgba(255,255,255,1) 100%)",
+              height: "100%",
+              padding: "0",
+              margin: "0",
+            }}
+          >
+            <img src={logo} alt="Logo" />
+            <p>
+              An easy-to-use application made so you never forget to water your
+              plants again.
+            </p>
+          </div>
 
-            <label htmlFor="password">Password:&nbsp;</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              data-cy="input-password"
-              onChange={handleChange}
-              value={formValues.password}
-            />
+          <div className="column" style={{ width: "30%" }}>
+            <FormContainer>
+              <StyledForm>
+                <form>
+                  <StyledFormInput>
+                    <h2>Log In to Your Account</h2>
+                    <label htmlFor="email">Username:&nbsp;</label>
+                    <input
+                      id="username"
+                      name="username"
+                      type="username"
+                      data-cy="input-username"
+                      onChange={handleChange}
+                      value={formValues.username}
+                    />
 
-            <div className="errors">
-              {errors.map((err) => (
-                <p style={{ color: "red" }}>{err.message}</p>
-              ))}
-            </div>
+                    <label htmlFor="password">Password:&nbsp;</label>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      data-cy="input-password"
+                      onChange={handleChange}
+                      value={formValues.password}
+                    />
 
-            <button data-cy="submit-button" onClick={handleSubmit}>
-              Login
-            </button>
-          </StyledFormInput>
-        </form>
-      </StyledForm>
-      <p>
-        Don't have an account?{" "}
-        <Link className="link" to="/signup">
-          Register
-        </Link>
-      </p>
-    </FormContainer>
-    //     </div>
-    //   </div>
-    // </div>
+                    <div className="errors">
+                      {errors.map((err) => (
+                        <p style={{ color: "red" }}>{err.message}</p>
+                      ))}
+                    </div>
+
+                    <button data-cy="submit-button" onClick={handleSubmit}>
+                      Login
+                    </button>
+                  </StyledFormInput>
+                </form>
+              </StyledForm>
+              <p>
+                Don't have an account?{" "}
+                <Link className="link" to="/signup">
+                  Register
+                </Link>
+              </p>
+            </FormContainer>
+          </div>
+        </div>
+      </div>
+    </PageContainer>
   );
 };
 
