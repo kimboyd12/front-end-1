@@ -32,7 +32,7 @@ const Plants = (props) => {
   const handleDelete = (plant) => {
     console.log(plant.plantID);
     dispatch(deletePlant(props.user.id, plant.plantID));
-    push("/plants");
+    push("/plantslist");
   };
 
   return (
