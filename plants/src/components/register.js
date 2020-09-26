@@ -1,9 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 // import { axiosWithAuth } from "../utils/axiosWithAuth";
 import axios from "axios";
 
 import styled from "styled-components";
+import logo from "./Logo.png";
+
+const PageContainer = styled.div`
+  text-align: center;
+
+  p {
+    font-family: "Raleway", sans-serif;
+    font-size: 2rem;
+    margin: 5%;
+  }
+  img {
+    margin-top: 25%;
+  }
+  .middle .aligned .row {
+    height: 100%;
+  }
+`;
 
 const FormContainer = styled.div`
   display: flex;
@@ -22,10 +40,10 @@ const FormContainer = styled.div`
 
   .link {
     text-decoration: none;
-    color: blue;
+    color: #49796b;
 
     &:hover {
-      color: black;
+      color: #a0d6b4;
     }
   }
 
@@ -36,7 +54,7 @@ const FormContainer = styled.div`
 `;
 const StyledForm = styled.div`
   background-color: #e5ebed;
-  width: 25%;
+  width: 40%;
   height: auto;
   padding: 2%;
   margin-top: 10%;
@@ -88,10 +106,9 @@ const StyledFormInput = styled.div`
     border-radius: 4px;
     box-sizing: border-box;
   }
-
   button {
     width: 95%;
-    background-color: #2b85a2;
+    background-color: #a0d6b4;
     color: white;
     padding: 20px 20px;
     margin: 2%;
@@ -187,12 +204,39 @@ function Register(props) {
   };
 
   return (
-    <FormContainer>
-      <StyledForm>
-        <form>
-          <StyledFormInput>
-            <h2>Create Your Account</h2>{" "}
-            {/* <label htmlFor="lastName">First Name:</label>
+    <PageContainer>
+      <div
+        className="ui equal width center aligned padded grid"
+        style={{ height: "100vh", padding: "0", margin: "0" }}
+      >
+        <div
+          className=" middle aligned row"
+          style={{ padding: "0", margin: "0" }}
+        >
+          <div
+            className="  middle center aligned column"
+            style={{
+              backgroundColor: "#a0d6b4",
+              background:
+                "linear-gradient(180deg, rgba(160,214,180,1) 9%, rgba(255,255,255,1) 100%)",
+              height: "100%",
+              padding: "0",
+              margin: "0",
+            }}
+          >
+            <img src={logo} alt="Logo" />
+            <p>
+              An easy-to-use application made so you never forget to water your
+              plants again.
+            </p>
+          </div>
+          <div className="column" style={{ width: "30%" }}>
+            <FormContainer>
+              <StyledForm>
+                <form>
+                  <StyledFormInput>
+                    <h2>Create Your Account</h2>{" "}
+                    {/* <label htmlFor="lastName">First Name:</label>
             <input
               type="text"
               name="firstName"
@@ -210,49 +254,61 @@ function Register(props) {
               onChange={inputChange}
             />
             {error.lastName.length > 0 ? <p>{error.lastName}</p> : null} */}
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              value={register.username}
-              onChange={inputChange}
-            />
-            {error.username.length > 0 ? <p>{error.username}</p> : null}
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={register.password}
-              onChange={inputChange}
-            />
-            {error.password.length > 5 ? <p>{error.password}</p> : null}
-            <label htmlFor="phoneNumber">Phone Number:</label>
-            <input
-              id="phoneNumber"
-              name="phoneNumber"
-              type="text"
-              onChange={inputChange}
-              value={register.phoneNumber}
-            />
-            {error.phoneNumber.length > 5 ? <p>{error.phoneNumber}</p> : null}
-            <pre>{JSON.stringify(Register, null, 2)}</pre>
-            {/* <button disabled={buttonDisabled}>Register</button>
+                    <label htmlFor="username">Username:</label>
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      value={register.username}
+                      onChange={inputChange}
+                    />
+                    {error.username.length > 0 ? <p>{error.username}</p> : null}
+                    <label htmlFor="password">Password:</label>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      value={register.password}
+                      onChange={inputChange}
+                    />
+                    {error.password.length > 5 ? <p>{error.password}</p> : null}
+                    <label htmlFor="phoneNumber">Phone Number:</label>
+                    <input
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="text"
+                      onChange={inputChange}
+                      value={register.phoneNumber}
+                    />
+                    {error.phoneNumber.length > 5 ? (
+                      <p>{error.phoneNumber}</p>
+                    ) : null}
+                    <pre>{JSON.stringify(Register, null, 2)}</pre>
+                    {/* <button disabled={buttonDisabled}>Register</button>
 
       
     </form> */}
-            <button
-              disabled={buttonDisabled}
-              data-cy="submit-button"
-              onClick={formSubmit}
-            >
-              Register
-            </button>
-          </StyledFormInput>
-        </form>
-      </StyledForm>
-    </FormContainer>
+                    <button
+                      disabled={buttonDisabled}
+                      data-cy="submit-button"
+                      onClick={formSubmit}
+                    >
+                      Register
+                    </button>
+                  </StyledFormInput>
+                </form>
+              </StyledForm>
+              <p>
+                Already have an account?{" "}
+                <Link className="link" to="/">
+                  Login
+                </Link>
+              </p>
+            </FormContainer>
+          </div>
+        </div>
+      </div>
+    </PageContainer>
   );
 }
 

@@ -8,6 +8,25 @@ import { connect, useDispatch } from "react-redux";
 import { addPlant } from "../actions";
 import { useHistory } from "react-router-dom";
 
+const StyledTitle = styled.div`
+  h1 {
+    font-family: "Raleway", sans-serif;
+    font-size: 2.5rem;
+    margin: 3%;
+    color: #a0d6b4;
+  }
+`;
+
+const StyledPage = styled.div`
+  background: radial-gradient(
+    circle,
+    rgba(160, 214, 180, 1) 9%,
+    rgba(255, 255, 255, 1) 100%
+  );
+
+  height: 100vh;
+`;
+
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -34,32 +53,37 @@ const FormContainer = styled.div`
   }
 `;
 const StyledForm = styled.div`
-  background-color: #e5ebed;
-  width: 100%;
+  width: 30%;
   padding: 2%;
   border-radius: 2rem;
-  box-shadow: 0 4rem 8rem 0 rgba(0, 0, 0, 0.2),
-    0 6rem 20rem 0 rgba(0, 0, 0, 0.19);
+
   display: flex;
   flex-direction: row;
   align-items: center;
+
   form {
     width: 100%;
   }
-`;
+  button {
+    color: white;
+    padding: 10px 10px;
+    border-radius: 4px;
+    border: 2px solid white;
+    background: transparent;
 
-const StyledOutput = styled.div`
-  p {
-    color: black;
-    margin-top: 2%;
-    font-size: 1rem;
     font-family: "Quicksand", sans-serif;
+    cursor: pointer;
+    margin-top: 2%;
+  }
+
+  p {
+    color: white;
   }
 `;
 
 const StyledFormInput = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 62.5%;
   width: 100%;
   h2 {
@@ -77,21 +101,19 @@ const StyledFormInput = styled.div`
   input {
     width: 100%;
     padding: 1rem 1rem;
-    margin: 0% 2% 0% 2%;
-    border: 1px solid #ccc;
+    margin: 3%;
+    background: transparent;
     border-radius: 0.5rem;
     box-sizing: border-box;
-  }
-  button {
-    width: 95%;
-    background-color: #2b85a2;
-    color: white;
-    margin: 3.2% 0% 0% 2%;
+
+    outline: 0;
     border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-family: "Quicksand", sans-serif;
+    border-bottom: 2px solid white;
+  }
+
+  input:focus {
+    border-color: #49796b;
+    background: transparent;
   }
 `;
 
@@ -155,56 +177,64 @@ const PlantsPage = (props) => {
   //   console.log(output);
   // console.log(Plants.nickname)
   return (
-    <FormContainer>
-      <StyledForm>
-        <form onSubmit={submit}>
-          <StyledFormInput>
-            <label htmlFor="nickname">
-              {" "}
-              <h2>Nickname</h2>
-              <input
-                id="nickname"
-                type="text"
-                name="nickname"
-                value={plantState.nickname}
-                onChange={change}
-              />
-              {errors.nickname.length > 0 ? <p>{errors.nickname}</p> : null}
-            </label>
-            <label htmlFor="species">
-              {" "}
-              <h2>Species</h2>
-              <input
-                id="species"
-                type="text"
-                name="species"
-                value={plantState.species}
-                onChange={change}
-              />
-              {errors.species.length > 0 ? <p>{errors.species}</p> : null}{" "}
-            </label>
-            <label htmlFor="h2oFrequency">
-              {" "}
-              <h2> Watering Amt</h2>
-              <input
-                id="h2oFrequency"
-                type="text"
-                name="h2oFrequency"
-                value={plantState.h2oFrequency}
-                onChange={change}
-              />
-              {errors.h2oFrequency.length > 0 ? (
-                <p>{errors.h2oFrequency}</p>
-              ) : null}
-            </label>
-            <button disabled={bDisabled} type="submit">
-              <h2>{bDisabled ? "Enter More Data" : "Submit"}</h2>
-            </button>
-          </StyledFormInput>
-        </form>
-      </StyledForm>
-      <StyledOutput></StyledOutput>
-    </FormContainer>
+    <div>
+      <StyledTitle>
+        <h1>
+          Add a New Plant <i className="leaf icon"></i>
+        </h1>
+      </StyledTitle>
+      <div className="ui horizontal divider" style={{ margin: "2%" }}>
+        Enter Plant Information
+      </div>
+      <StyledPage>
+        <FormContainer>
+          <StyledForm>
+            <form onSubmit={submit}>
+              <StyledFormInput>
+                <div>
+                  <input
+                    id="nickname"
+                    placeholder="Nickname"
+                    type="text"
+                    name="nickname"
+                    value={plantState.nickname}
+                    onChange={change}
+                  />
+                </div>
+                {errors.nickname.length > 0 ? <p>{errors.nickname}</p> : null}
+                <div>
+                  <input
+                    id="species"
+                    placeholder="Species"
+                    type="text"
+                    name="species"
+                    value={plantState.species}
+                    onChange={change}
+                  />
+                </div>
+                {errors.species.length > 0 ? <p>{errors.species}</p> : null}{" "}
+                <div>
+                  <input
+                    id="h2oFrequency"
+                    placeholder="Watering Schedule"
+                    type="text"
+                    name="h2oFrequency"
+                    value={plantState.h2oFrequency}
+                    onChange={change}
+                  />
+                </div>
+                {errors.h2oFrequency.length > 0 ? (
+                  <p>{errors.h2oFrequency}</p>
+                ) : null}
+              </StyledFormInput>
+              <button disabled={bDisabled} type="submit">
+                <p> {bDisabled ? "Enter More Data" : "Submit"}</p>
+              </button>
+            </form>
+          </StyledForm>
+        </FormContainer>
+      </StyledPage>
+    </div>
     // need to change the JSON stringify to a list of plants
   );
 };
