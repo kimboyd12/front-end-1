@@ -131,6 +131,7 @@ export const loginReducer = (state = initialState, action) => {
           password: action.payload.password,
           phoneNumber: action.payload.phoneNumber,
         },
+
         error: " ",
       };
     case CHANGE_INFO_FAILED:

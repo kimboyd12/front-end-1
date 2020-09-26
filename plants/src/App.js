@@ -14,6 +14,13 @@ import UpdatePlants from "./components/updateForms/updatePlants";
 
 import UpdateInformation from "./components/updateForms/updateInformation";
 import PlantsList from "./components/PlantsList";
+import styled from "styled-components";
+
+const StyledLinks = styled.div`
+  .link {
+    color: #49796b;
+  }
+`;
 
 function App() {
   const { push } = useHistory();
@@ -23,66 +30,77 @@ function App() {
   };
   return (
     <div className="App">
-      <div className="ui  menu" style={{ margin: "0" }}>
-        <a className="item link">
-          <Link
-            className="link"
-            to={"//watermyplantsmarketingpage.netlify.app/about.html"}
-            target="_blank"
-          >
-            Home
-          </Link>
-        </a>
-        <a className="link item">
-          <Link className="link" to="/addplant">
-            Add New Plant
-          </Link>
-        </a>
-        <a className="link item">
-          <Link className="link" to="/profile">
-            Profile
-          </Link>
-        </a>
-
-        <div className="right menu">
-          <div class="item">
-            <div
-              class="ui green button"
-              style={{ backgroundColor: "#a0d6b4 " }}
+      <StyledLinks>
+        <div className="ui  menu" style={{ margin: "0" }}>
+          <a className="item link">
+            <Link
+              className="link"
+              to={"//watermyplantsmarketingpage.netlify.app/about.html"}
+              target="_blank"
             >
-              {" "}
-              <Link className="link" to="/">
-                Login
-              </Link>
-            </div>
-          </div>
+              Home
+            </Link>
+          </a>
+          <a className="link item">
+            <Link className="link" to="/addplant">
+              Add New Plant
+            </Link>
+          </a>
+          <a className="link item">
+            <Link className="link" to="/plantslist">
+              My Plants
+            </Link>
+          </a>
+          <a className="link item">
+            <Link className="link" to="/profile">
+              Profile
+            </Link>
+          </a>
 
-          <div class="item">
-            <div class="ui button">
-              <Link className="link" to="/" onClick={handleSignOut}>
-                Logout
-              </Link>
+          <div className="right menu">
+            <div class="item">
+              <div
+                class="ui green button"
+                style={{ backgroundColor: "#a0d6b4 " }}
+              >
+                {" "}
+                <Link className="link" to="/">
+                  Login
+                </Link>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="ui button">
+                <Link className="link" to="/" onClick={handleSignOut}>
+                  Logout
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <Route exact path="/" component={Login} />
+        <Route exact path="/" component={Login} />
 
-      <Route path="/signup" component={Register} />
+        <Route path="/signup" component={Register} />
 
-      <PrivateRoute exact path="/profile" component={Profile} />
-      <PrivateRoute exact path="/addplant" component={PlantsPage} />
+        <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact path="/addplant" component={PlantsPage} />
 
-      {/* <PrivateRoute exact path="/plantsPage" component={Plants} /> */}
-      <PrivateRoute exact path="/plantslist" component={PlantsList} />
+        {/* <PrivateRoute exact path="/plantsPage" component={Plants} /> */}
+        <PrivateRoute exact path="/plantslist" component={PlantsList} />
 
-      <PrivateRoute
-        exact
-        path="/updateplant/plant/:id"
-        component={UpdatePlants}
-      />
+        <PrivateRoute
+          exact
+          path="/updateplant/plant/:id"
+          component={UpdatePlants}
+        />
 
-      <PrivateRoute exact path="/updateaccount" component={UpdateInformation} />
+        <PrivateRoute
+          exact
+          path="/updateaccount"
+          component={UpdateInformation}
+        />
+      </StyledLinks>
     </div>
   );
 }

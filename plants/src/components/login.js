@@ -43,7 +43,7 @@ const FormContainer = styled.div`
     color: #49796b;
 
     &:hover {
-      color: black;
+      color: #a0d6b4;
     }
   }
 

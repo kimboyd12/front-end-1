@@ -34,14 +34,17 @@ const Profile = (props) => {
     }
   `;
 
+  const username = localStorage.getItem("username");
+  const phoneNumber = localStorage.getItem("phoneNumber");
+
   document.onload = console.log("Profile Lodaded");
   return (
     <Container>
       <StyledDiv>
         <h1>Welcome back.</h1>
         <p>What would you like to do today?</p>
-        <p id="info">Username: {props.user.username}</p>
-        <p id="info">Phone Number: {props.user.phoneNumber}</p>
+        <p id="info">Username: {username}</p>
+        <p id="info">Phone Number: {phoneNumber}</p>
 
         <Link to="/plantslist">
           <button>View Your Plants</button>
