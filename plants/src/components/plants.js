@@ -40,6 +40,7 @@ const Plants = (props) => {
 
   useEffect(() => {
     dispatch(userPlants(props.user.id));
+    localStorage.setItem("length", props.usersPlants.length);
   }, [props.usersPlants]);
 
   console.log(props.usersPlants);
@@ -78,7 +79,7 @@ const Plants = (props) => {
                 return (
                   <StyledDiv>
                     <div className="ui cards">
-                      <div className="card">
+                      <div className="green card">
                         <div className="content">
                           <img
                             className="right floated mini ui image"

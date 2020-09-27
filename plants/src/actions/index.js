@@ -84,6 +84,7 @@ export const userPlants = (userId) => (dispatch) => {
     .then((res) => {
       dispatch({ type: USER_PLANTS_SUCCESS, payload: res.data });
       console.log(res.data);
+      localStorage.setItem("length", res.data.length);
     })
     .catch((err) => {
       dispatch({ type: USER_PLANTS_FAILURE });
