@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { loginUser } from "../actions";
 import { registerSchema } from "./loginSchema";
@@ -211,10 +211,15 @@ const Login = (props) => {
                       {errors.map((err) => (
                         <p style={{ color: "red" }}>{err.message}</p>
                       ))}
+                      {props.error}
                     </div>
 
                     <button data-cy="submit-button" onClick={handleSubmit}>
-                      Login
+                      {props.isLoggingIn ? (
+                        <div class="ui active inline loader"></div>
+                      ) : (
+                        <text>Login</text>
+                      )}
                     </button>
                   </StyledFormInput>
                 </form>
@@ -233,4 +238,11 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    isLoggingIn: state.loginReducer.isLoggingIn,
+    error: state.loginReducer.error,
+  };
+};
+
+export default connect(mapStateToProps)(Login);

@@ -80,7 +80,7 @@ const Profile = (props) => {
       <StyledPage>
         <div className="ui centered card" style={{ width: "20%" }}>
           <div className="image">
-            <img src="https://source.unsplash.com/500x500/?flowers,plants" />
+            <img src="https://loremflickr.com/500/500/flower" />
           </div>
           <div className="content">
             <p
