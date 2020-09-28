@@ -42,11 +42,13 @@ export const loginUser = (credentials, props) => (dispatch) => {
       localStorage.setItem("id", res.data.user.id);
       localStorage.setItem("username", res.data.user.username);
       localStorage.setItem("phoneNumber", res.data.user.phoneNumber);
+      const id = localStorage.getItem("id");
+      dispatch(userPlants(id));
 
       props.history.push("/profile");
     })
     .catch((err) => {
-      dispatch({ type: LOGIN_USER_FAILURE });
+      dispatch({ type: LOGIN_USER_FAILURE, payload: "Error Logging In" });
     });
 };
 
@@ -60,13 +62,16 @@ export const logoutUser = (dispatch) => {
 };
 
 export const deletePlant = (userId, id) => (dispatch) => {
+  const userid = localStorage.getItem("id");
   dispatch({ type: DELETE_PLANT_START });
   axiosWithAuth()
     .delete(`/plants/${id}`)
     .then((res) => {
       console.log(res);
       dispatch({ type: DELETE_PLANT_SUCCESS, payload: id });
+      dispatch(userPlants(userid));
     })
+
     .catch((err) => {
       dispatch({ type: DELETE_PLANT_FAILURE });
     })
@@ -84,7 +89,6 @@ export const userPlants = (userId) => (dispatch) => {
     .then((res) => {
       dispatch({ type: USER_PLANTS_SUCCESS, payload: res.data });
       console.log(res.data);
-      localStorage.setItem("length", res.data.length);
     })
     .catch((err) => {
       dispatch({ type: USER_PLANTS_FAILURE });
@@ -103,6 +107,7 @@ export const addPlant = (userId, plant) => (dispatch) => {
         payload: res.data,
       });
       console.log(res);
+      dispatch(userPlants(id));
     })
     .catch((err) => {
       dispatch({ type: ADD_PLANT_FAILURE });

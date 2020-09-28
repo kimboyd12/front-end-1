@@ -41,7 +41,7 @@ const Plants = (props) => {
   useEffect(() => {
     dispatch(userPlants(props.user.id));
     localStorage.setItem("length", props.usersPlants.length);
-  }, [props.usersPlants]);
+  }, []);
 
   console.log(props.usersPlants);
 
@@ -71,9 +71,11 @@ const Plants = (props) => {
           <h2>You have no plants. Add one.</h2>
         )}
 
-        {/* {props.isLoading && <h1>Loading...</h1>} */}
         <div className="ui one column centered grid">
           <div className="column" style={{ width: "50%" }}>
+            {props.isLoading && (
+              <div class="ui active centered inline loader"></div>
+            )}
             <StyledDiv>
               {props.usersPlants.map((plant) => {
                 return (
@@ -83,7 +85,7 @@ const Plants = (props) => {
                         <div className="content">
                           <img
                             className="right floated mini ui image"
-                            src="https://source.unsplash.com/featured/?flowers,plants"
+                            src="https://loremflickr.com/500/500/flower"
                           ></img>
                           <div className="header">{plant.Nickname}</div>
                           <div className="meta">{plant.Species}</div>
