@@ -4,7 +4,7 @@ export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
   return axios.create({
     //add bagit pulse url
-    baseURL: "https://water-my-plants-back-end1.herokuapp.com/",
+    baseURL: "https://watermy-plants.herokuapp.com/",
     headers: {
       Authorization: token,
     },

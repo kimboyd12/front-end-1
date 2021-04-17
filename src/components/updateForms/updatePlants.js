@@ -137,7 +137,7 @@ const UpdatePlants = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`https://water-my-plants-back-end1.herokuapp.com/plants/${id}`)
+      .get(`https://watermy-plants.herokuapp.com/plants/${id}`)
       .then((res) => {
         setPlantUpdate(res.data);
       })
@@ -148,7 +148,7 @@ const UpdatePlants = (props) => {
     e.preventDefault();
     axiosWithAuth()
       .put(
-        `https://water-my-plants-back-end1.herokuapp.com/plants/${id}`,
+        `https://watermy-plants.herokuapp.com/plants/${id}`,
         plantUpdate
       )
       .then((response) => {

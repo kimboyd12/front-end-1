@@ -188,7 +188,7 @@ function Register(props) {
     console.log("Registering");
     axios
       .post(
-        "https://water-my-plants-back-end1.herokuapp.com/users/register",
+        "https://watermy-plants.herokuapp.com/users/register",
         register
       )
       .then((response) => {
