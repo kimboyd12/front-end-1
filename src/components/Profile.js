@@ -68,7 +68,7 @@ const Profile = (props) => {
   const phoneNumber = localStorage.getItem("phoneNumber");
   const length = localStorage.getItem("length");
 
-  document.onload = console.log("Profile Lodaded");
+  document.onload = console.log("Profile Loaded");
   return (
     <div>
       <StyledTitle>

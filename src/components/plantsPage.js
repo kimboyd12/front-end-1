@@ -172,6 +172,7 @@ const PlantsPage = (props) => {
 
     dispatch(addPlant(props.user.id, plantState));
     push("/plantslist");
+
   };
   //   console.log(p);
   //   console.log(output);
