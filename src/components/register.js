@@ -7,6 +7,12 @@ import axios from "axios";
 import styled from "styled-components";
 import logo from "./Logo.png";
 
+const Error = styled.div`
+  color: red;
+  font-size: .85rem;
+  font-family: "Quicksand", sans-serif;
+`
+
 const PageContainer = styled.div`
   text-align: center;
 
@@ -47,10 +53,6 @@ const FormContainer = styled.div`
     }
   }
 
-  .errors {
-    font-size: 1.5rem;
-    font-family: "Quicksand", sans-serif;
-  }
 `;
 const StyledForm = styled.div`
   background-color: #e5ebed;
@@ -124,15 +126,16 @@ const StyledFormInput = styled.div`
 // import { Link } from 'react-router-dom';
 
 const formSchema = yup.object().shape({
-  username: yup.string().required("Please enter your username"),
+  username: yup.string().required("Please enter a username"),
   password: yup
     .string()
-    .min(5, "Must have more that 5 characters")
-    .required("Must enter"),
+    .min(5, "Must contain at least 5 characters")
+    .required("Please create a password"),
   phoneNumber: yup.string().required("Please enter your phone number"),
 });
 
 function Register(props) {
+
   const [register, setRegister] = useState({
     username: "",
     password: "",
@@ -184,6 +187,7 @@ function Register(props) {
   };
 
   const formSubmit = (e) => {
+
     e.preventDefault();
     console.log("Registering");
     axios
@@ -201,6 +205,7 @@ function Register(props) {
       password: "",
       phoneNumber: "",
     });
+
   };
 
   return (
@@ -236,24 +241,6 @@ function Register(props) {
                 <form>
                   <StyledFormInput>
                     <h2>Create Your Account</h2>{" "}
-                    {/* <label htmlFor="lastName">First Name:</label>
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              value={register.firstName}
-              onChange={inputChange}
-            />
-            {error.firstName.length > 0 ? <p>{error.firstName}</p> : null}
-            <label htmlFor="firstName">Last Name:</label>
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              value={register.lastName}
-              onChange={inputChange}
-            />
-            {error.lastName.length > 0 ? <p>{error.lastName}</p> : null} */}
                     <label htmlFor="username">Username:</label>
                     <input
                       type="text"
@@ -262,7 +249,7 @@ function Register(props) {
                       value={register.username}
                       onChange={inputChange}
                     />
-                    {error.username.length > 0 ? <p>{error.username}</p> : null}
+                    {error.username.length > 0 ? <Error>{error.username}</Error> : null}
                     <label htmlFor="password">Password:</label>
                     <input
                       type="password"
@@ -271,7 +258,7 @@ function Register(props) {
                       value={register.password}
                       onChange={inputChange}
                     />
-                    {error.password.length > 5 ? <p>{error.password}</p> : null}
+                    {error.password.length > 5 ? <Error>{error.password}</Error> : null}
                     <label htmlFor="phoneNumber">Phone Number:</label>
                     <input
                       id="phoneNumber"
@@ -281,13 +268,9 @@ function Register(props) {
                       value={register.phoneNumber}
                     />
                     {error.phoneNumber.length > 5 ? (
-                      <p>{error.phoneNumber}</p>
+                      <Error>{error.phoneNumber}</Error>
                     ) : null}
                     <pre>{JSON.stringify(Register, null, 2)}</pre>
-                    {/* <button disabled={buttonDisabled}>Register</button>
-
-      
-    </form> */}
                     <button
                       disabled={buttonDisabled}
                       data-cy="submit-button"

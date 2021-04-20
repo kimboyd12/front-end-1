@@ -120,12 +120,9 @@ const initialPlants = {
 };
 
 const UpdatePlants = (props) => {
-  // const { id } = props.match.params;
 
   const [plantUpdate, setPlantUpdate] = useState(initialPlants);
-
   const { push } = useHistory();
-
   const { id } = useParams();
 
   const handleChanges = (e) => {
@@ -156,7 +153,6 @@ const UpdatePlants = (props) => {
         setPlantUpdate(response.data);
 
         push("/plantslist");
-        // push(`plants/${id}`);
       })
       .catch((error) => {
         console.log(error);
