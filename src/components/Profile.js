@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 
+
 const StyledTitle = styled.div`
   h1 {
     font-family: "Raleway", sans-serif;
@@ -33,46 +34,18 @@ const StyledPage = styled.div`
 `;
 
 const Profile = (props) => {
-  // const Container = styled.div`
-  //   display: flex;
-  //   justify-content: center;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   width: 100%;
-  //   text-decoration: none;
-  //   p {
-  //     color: black;
-  //     margin: 0.3rem;
-  //     font-size: 1rem;
-  //     font-family: "Quicksand", sans-serif;
-  //   }
-  // `;
-  // const StyledDiv = styled.div`
-  //   background-color: #e5ebed;
-  //   width: 50%;
-  //   padding: 2%;
-  //   border-radius: 2rem;
-  //   box-shadow: 0 4rem 8rem 0 rgba(0, 0, 0, 0.2),
-  //     0 6rem 20rem 0 rgba(0, 0, 0, 0.19);
-  //   display: flex;
-  //   flex-direction: column;
-  //   flex-shrink: 3;
-  //   margin: 0rem 0rem 0rem 0rem;
-  //   button {
-  //     color: black;
-  //     margin: 0.5rem;
-  //   }
-  // `;
 
   const username = localStorage.getItem("username");
   const phoneNumber = localStorage.getItem("phoneNumber");
   const length = localStorage.getItem("length");
 
+  
+
   document.onload = console.log("Profile Loaded");
   return (
     <div>
       <StyledTitle>
-        <h1>Welcome Back.</h1>
+        <h1>Welcome Back!</h1>
       </StyledTitle>
       <div className="ui horizontal divider" style={{ margin: "2%" }}>
         What would you like to do today?
@@ -92,7 +65,7 @@ const Profile = (props) => {
                 textAlign: "left",
               }}
             >
-              Username: {username}
+            {username}
             </p>
             <div className="left floated meta">
               <span
@@ -100,14 +73,14 @@ const Profile = (props) => {
                 id="info"
                 style={{ fontFamily: "Raleway" }}
               >
-                Phone Number: {phoneNumber}
+                {/* Phone Number: {phoneNumber} */}
               </span>
             </div>
             <div
               className="left floated description"
               style={{ fontFamily: "Raleway" }}
             >
-              {username} has {length} plants.
+              You have {length} plants.
             </div>
           </div>
           <div className="extra content">
@@ -140,6 +113,14 @@ const Profile = (props) => {
                   </p>
                 </Link>
               </a>
+              {/* <a className="item">
+                <Link to="/profilepicture" style={{ color: "#49796b" }}>
+                  <p style={{ textAlign: "left" }}>
+                    {" "}
+                    <i class="edit icon"></i> Add Profile Picture
+                  </p>
+                </Link>
+              </a> */}
             </div>
           </div>
         </div>

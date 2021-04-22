@@ -8,6 +8,9 @@ import { deletePlant } from "../actions";
 
 import { useHistory } from "react-router-dom";
 
+import planticon from "./images/planticon.png"
+
+
 const StyledTitle = styled.div`
   h1 {
     font-family: "Raleway", sans-serif;
@@ -85,7 +88,7 @@ const Plants = (props) => {
                         <div className="content">
                           <img
                             className="right floated mini ui image"
-                            src="https://loremflickr.com/500/500/flower"
+                            src={planticon}
                           ></img>
                           <div className="header">{plant.Nickname}</div>
                           <div className="meta">{plant.Species}</div>

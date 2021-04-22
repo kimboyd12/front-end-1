@@ -7,6 +7,7 @@ import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
 import PlantsPage from "./components/plantsPage";
 import Profile from "./components/Profile";
+import imageUpload from "./components/imageUpload";
 
 // import PlantPage from "./components/plantsPage";
 
@@ -100,6 +101,11 @@ function App() {
           path="/updateaccount"
           component={UpdateInformation}
         />
+        {/* <PrivateRoute
+          exact
+          path="/profilepicture"
+          component={imageUpload}
+        /> */}
       </StyledLinks>
     </div>
   );
