@@ -8,6 +8,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import PlantsPage from "./components/plantsPage";
 import Profile from "./components/Profile";
 import imageUpload from "./components/imageUpload";
+import Homepage from "./components/Homepage"
 
 // import PlantPage from "./components/plantsPage";
 
@@ -33,11 +34,10 @@ function App() {
     <div className="App">
       <StyledLinks>
         <div className="ui  menu" style={{ margin: "0" }}>
-          <a className="item link">
+          <a className="link item">
             <Link
               className="link"
-              to={"//watermyplantsmarketingpage.netlify.app/about.html"}
-              target="_blank"
+              to="/home"
             >
               Home
             </Link>
@@ -83,6 +83,7 @@ function App() {
         <Route exact path="/" component={Login} />
 
         <Route path="/signup" component={Register} />
+        <Route path="/home" component={Homepage} />
 
         <PrivateRoute exact path="/profile" component={Profile} />
         <PrivateRoute exact path="/addplant" component={PlantsPage} />
