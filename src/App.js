@@ -82,7 +82,7 @@ function App() {
         <Route exact path="/login" component={Login} />
 
         <Route path="/signup" component={Register} />
-        <Route path="/" component={Homepage} />
+        <Route exact path="/" component={Homepage} />
 
         <PrivateRoute exact path="/profile" component={Profile} />
         <PrivateRoute exact path="/addplant" component={PlantsPage} />
