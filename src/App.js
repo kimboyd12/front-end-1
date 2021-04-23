@@ -7,10 +7,9 @@ import Register from "./components/register";
 import PrivateRoute from "./utils/PrivateRoute";
 import PlantsPage from "./components/plantsPage";
 import Profile from "./components/Profile";
-import imageUpload from "./components/imageUpload";
+// import imageUpload from "./components/imageUpload";
 import Homepage from "./components/Homepage"
 
-// import PlantPage from "./components/plantsPage";
 
 import UpdatePlants from "./components/updateForms/updatePlants";
 
@@ -37,7 +36,7 @@ function App() {
           <a className="link item">
             <Link
               className="link"
-              to="/home"
+              to="/"
             >
               Home
             </Link>
@@ -65,7 +64,7 @@ function App() {
                 style={{ backgroundColor: "#a0d6b4 " }}
               >
                 {" "}
-                <Link className="link" to="/">
+                <Link className="link" to="/login">
                   Login
                 </Link>
               </div>
@@ -80,15 +79,13 @@ function App() {
             </div>
           </div>
         </div>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/login" component={Login} />
 
         <Route path="/signup" component={Register} />
-        <Route path="/home" component={Homepage} />
+        <Route path="/" component={Homepage} />
 
         <PrivateRoute exact path="/profile" component={Profile} />
         <PrivateRoute exact path="/addplant" component={PlantsPage} />
-
-        {/* <PrivateRoute exact path="/plantsPage" component={Plants} /> */}
         <PrivateRoute exact path="/plantslist" component={PlantsList} />
 
         <PrivateRoute
